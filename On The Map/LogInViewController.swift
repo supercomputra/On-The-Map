@@ -47,12 +47,12 @@ class LogInViewController: UIViewController {
 
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         let body = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}"
-        print("\(body)")
+
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: String.Encoding.utf8)
-        print(request)
+
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
@@ -97,6 +97,7 @@ class LogInViewController: UIViewController {
             if statusCode != 200 {
                 
                 guard let errorMessage = parsedResult["error"] as? String else {
+                    displayError(String(describing: error))
                     return
                 }
                 
@@ -157,6 +158,7 @@ class LogInViewController: UIViewController {
     
     // Complete Login
     private func completeLogin() -> Void {
+        
         print("login success")
         
         performUIUpdatesOnMain {
