@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LogInViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -29,10 +29,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity Logo" translatesAutoresizingMaskIntoConstraints="NO" id="FLi-Z0-mcF">
-                                                <rect key="frame" x="112" y="32" width="150" height="150"/>
+                                                <rect key="frame" x="137" y="57" width="100" height="100"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="1Qf-ys-0bA"/>
-                                                    <constraint firstAttribute="height" constant="150" id="lpv-qu-RI8"/>
+                                                    <constraint firstAttribute="width" constant="100" id="1Qf-ys-0bA"/>
+                                                    <constraint firstAttribute="height" constant="100" id="lpv-qu-RI8"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -64,7 +64,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqr-fM-QrO">
                                                         <rect key="frame" x="0.0" y="100" width="359" height="40"/>
@@ -76,7 +76,7 @@
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="Login"/>
                                                         <connections>
-                                                            <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ugT-58-b0d"/>
+                                                            <action selector="logInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dZ5-sR-xim"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jpp-NO-XWe">
@@ -130,10 +130,16 @@
                             <constraint firstItem="zBV-eq-ZDk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xxN-TG-yQg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logInButton" destination="cqr-fM-QrO" id="5FS-sT-JMl"/>
+                        <outlet property="passwordTextField" destination="PcF-l3-Nle" id="lOu-Uu-KUj"/>
+                        <outlet property="signUpButton" destination="ILx-jT-kgd" id="t4H-dT-Ejj"/>
+                        <outlet property="usernameTexField" destination="nvn-nX-hUv" id="mG3-n4-BWD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1457" y="112"/>
+            <point key="canvasLocation" x="1185" y="112"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="lCn-Yb-kDz">
@@ -148,7 +154,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0FQ-A1-r6i"/>
+                    <navigationItem key="navigationItem" id="0FQ-A1-r6i">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="gPg-lN-VNT">
+                            <color key="tintColor" red="0.20627092899999999" green="0.79289346540000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logOutButtonItem:" destination="r8T-P1-vRr" id="c8L-Xo-XQf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXi-Nc-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,7 +227,14 @@
                             <outlet property="delegate" destination="Wdk-Db-ax6" id="dZ0-Oy-WZi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jUv-g5-2Og"/>
+                    <navigationItem key="navigationItem" id="jUv-g5-2Og">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="znl-qU-HEK">
+                            <color key="tintColor" red="0.20627092899999999" green="0.79289346540000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logOutButtonItem:" destination="Wdk-Db-ax6" id="6F3-Ru-WAi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDF-rm-GW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

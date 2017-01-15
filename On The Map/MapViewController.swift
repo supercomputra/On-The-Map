@@ -9,6 +9,14 @@
 import UIKit
 
 class MapViewController: UIViewController {
+    
+    // Outlets
+    
+    // Actions
+    
+    @IBAction func logOutButtonItem(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
