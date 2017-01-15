@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E57A33F1E2BFCB600CA828E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */; };
 		6E862EE81E2B56BE00D1067D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EE71E2B56BE00D1067D /* AppDelegate.swift */; };
 		6E862EEA1E2B56BE00D1067D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EE91E2B56BE00D1067D /* LogInViewController.swift */; };
 		6E862EED1E2B56BE00D1067D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E862EEB1E2B56BE00D1067D /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		6E862EE41E2B56BE00D1067D /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E862EE71E2B56BE00D1067D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E862EE91E2B56BE00D1067D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				6E862EE71E2B56BE00D1067D /* AppDelegate.swift */,
 				6E862EE91E2B56BE00D1067D /* LogInViewController.swift */,
+				6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */,
 				6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */,
 				6E862F181E2B60E300D1067D /* TableViewController.swift */,
 				6E862F1A1E2B613500D1067D /* MapViewController.swift */,
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E57A33F1E2BFCB600CA828E /* GCDBlackBox.swift in Sources */,
 				6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */,
 				6E862F1F1E2B68B700D1067D /* ConfigureUI.swift in Sources */,
 				6E862EEA1E2B56BE00D1067D /* LogInViewController.swift in Sources */,
@@ -534,6 +538,7 @@
 				6E862F111E2B56BF00D1067D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E862F121E2B56BF00D1067D /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +547,7 @@
 				6E862F141E2B56BF00D1067D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E862F151E2B56BF00D1067D /* Build configuration list for PBXNativeTarget "On The MapUITests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +556,7 @@
 				6E862F171E2B56BF00D1067D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

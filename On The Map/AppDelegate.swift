@@ -118,24 +118,5 @@ extension AppDelegate {
         
     }
     
-    func UdacityURLFromParameters(_ parameters: [String: AnyObject], withPathExtension: String? = nil) -> URL {
-        
-        let pathExtension = withPathExtension ?? ""
-        var components = URLComponents()
-        components.scheme = Constants.Udacity.APIScheme
-        components.host = Constants.Udacity.APIHost
-        components.path = Constants.Udacity.APIPath + pathExtension
-        components.queryItems = [URLQueryItem]()
-        
-        for (key, value) in parameters {
-            let queryItem = URLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
-        }
-        
-        return components.url!
-        
-    }
-
-    
 }
 

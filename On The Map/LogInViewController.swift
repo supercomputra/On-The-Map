@@ -22,6 +22,7 @@ class LogInViewController: UIViewController {
     var appDelegate: AppDelegate!
     var username: String?
     var password: String?
+    var validAccount: Bool = false
     
     // Actions
 
@@ -30,29 +31,125 @@ class LogInViewController: UIViewController {
             showAlert(alertTitle: "", alertMessage: "Username and Password you entered are wrong")
         }
         
+        username = usernameTexField.text!
+        password = passwordTextField.text!
+        
         requestToken()
         
         
     }
+
     
     // Get request Token
     private func requestToken() -> Void {
         
-        let methodParameters: [String: AnyObject] = [
-            :
-        ]
-        let url = appDelegate.UdacityURLFromParameters(methodParameters)
-        let request = NSMutableURLRequest(url: url)
-        let body = "{\"udacity\": {\"\": \"account@domain.com\", \"password\": \"********\"}}"
-        
+        presentActivityIndicator(start: true)
+
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        let body = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}"
+        print("\(body)")
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: String.Encoding.utf8)
+        print(request)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            <#code#>
+            
+            func displayError(_ error: String) {
+                performUIUpdatesOnMain {
+                    self.showAlert(alertTitle: "Error", alertMessage: error)
+                }
+            }
+            
+            let range = Range(uncheckedBounds: (5, data!.count))
+            let securedData = data?.subdata(in: range)
+            
+            
+            // Was there any error?
+            guard (error == nil) else {
+                displayError("There was an error")
+                return
+            }
+            
+            // Did we get a successfull 200 response?
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            // Was there any data returned?
+            guard let data = securedData else {
+                displayError("No data was returned by the request")
+                return
+            }
+            
+            
+            // Parse the data
+            let parsedResult: [String: AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
+            } catch {
+                displayError(String(describing: error))
+                return
+            }
+            
+            if statusCode != 200 {
+                
+                guard let errorMessage = parsedResult["error"] as? String else {
+                    return
+                }
+                
+                performUIUpdatesOnMain {
+                    self.presentActivityIndicator(start: false)
+                }
+                
+                displayError(errorMessage)
+                
+            } else {
+                
+                print("\(parsedResult!)")
+                
+                print("Taking accountData")
+                
+                guard let accountData = parsedResult["account"] as? [String: AnyObject] else {
+                    displayError(String(describing: error))
+                    return
+                }
+                
+                print(accountData)
+                
+                
+                print("Taking registrationStatus")
+                guard let registrationStatus = accountData["registered"] as? Bool else {
+                    displayError(String(describing: error))
+                    return
+                }
+                
+                print(registrationStatus)
+                
+                if registrationStatus {
+                    self.validAccount = true
+                } else {
+                    displayError("Username and password invalid")
+                }
+                
+                performUIUpdatesOnMain {
+                    self.presentActivityIndicator(start: false)
+                }
+                
+                
+                if self.validAccount {
+                    self.completeLogin()
+                }
+                
+            }
+ 
         }
+        
+        task.resume()
+        
+        
         
         
     }
@@ -60,8 +157,12 @@ class LogInViewController: UIViewController {
     
     // Complete Login
     private func completeLogin() -> Void {
+        print("login success")
         
-        presentActivityIndicator()
+        performUIUpdatesOnMain {
+            self.presentNextView()
+        }
+        
         
     }
     
@@ -81,7 +182,7 @@ class LogInViewController: UIViewController {
     }
     
     // Presenting activity Indicator
-    private func presentActivityIndicator() -> Void {
+    private func presentActivityIndicator(start: Bool) -> Void {
         let alert = UIAlertController(title: "Loading...", message: "", preferredStyle: UIAlertControllerStyle.alert)
         let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
         alert.addAction(ok)
@@ -92,8 +193,12 @@ class LogInViewController: UIViewController {
         activityIndicatorView.color = UIColor.darkGray
         alert.view.addSubview(activityIndicatorView)
         activityIndicatorView.isUserInteractionEnabled = false
-        activityIndicatorView.startAnimating()
-        self.present(alert, animated: true, completion: nil)
+        if start == true {
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     // Displaying error message
