@@ -138,7 +138,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
                 let url = URL(string: toOpen)
-                app.openURL(url!)
+                app.open(url!, completionHandler: nil)
             }
         }
     }

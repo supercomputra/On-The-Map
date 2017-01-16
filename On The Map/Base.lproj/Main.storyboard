@@ -134,6 +134,7 @@
                         <outlet property="logInButton" destination="cqr-fM-QrO" id="5FS-sT-JMl"/>
                         <outlet property="passwordTextField" destination="PcF-l3-Nle" id="lOu-Uu-KUj"/>
                         <outlet property="signUpButton" destination="ILx-jT-kgd" id="t4H-dT-Ejj"/>
+                        <outlet property="thirdQuarterView" destination="D2q-08-caT" id="D9W-Lq-jhs"/>
                         <outlet property="usernameTexField" destination="nvn-nX-hUv" id="mG3-n4-BWD"/>
                     </connections>
                 </viewController>

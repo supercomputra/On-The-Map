@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // Outlets
     
@@ -16,6 +18,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var thirdQuarterView: UIView!
     
     // Variables
     
@@ -38,7 +41,17 @@ class LogInViewController: UIViewController {
         
         
     }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("logged in")
+        performUIUpdatesOnMain {
+            self.presentNextView()
+        }
+    }
 
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("logged out")
+    }
     
     // Get request Token
     private func postSession() -> Void {
@@ -214,6 +227,19 @@ class LogInViewController: UIViewController {
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         setUIEnabled(true)
+        
+        let loginButton = FBSDKLoginButton()
+        // Optional: Place the button in the center of your view.
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.delegate = self
+        loginButton.center = self.thirdQuarterView.center
+        self.view.addSubview(loginButton)
+        
+        if (FBSDKAccessToken.current() != nil) {
+            // User is logged in, do work such as go to next view controller.
+            
+        }
+        
     }
 
 }
