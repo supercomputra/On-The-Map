@@ -158,8 +158,7 @@ class LogInViewController: UIViewController {
         
         print("login success")
         
-        usernameTexField.text = ""
-        passwordTextField.text = ""
+        
         
         performUIUpdatesOnMain {
             self.presentNextView()
