@@ -20,6 +20,10 @@
 		6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1A1E2B613500D1067D /* MapViewController.swift */; };
 		6E862F1D1E2B681700D1067D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1C1E2B681700D1067D /* Constants.swift */; };
 		6E862F1F1E2B68B700D1067D /* ConfigureUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */; };
+		6ED70F431E2CB913001E8620 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F3F1E2CB913001E8620 /* Bolts.framework */; };
+		6ED70F441E2CB913001E8620 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F401E2CB913001E8620 /* FBSDKCoreKit.framework */; };
+		6ED70F451E2CB913001E8620 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */; };
+		6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */; };
 		928DBCCEE3274DB60AD7B0B8 /* Pods_On_The_MapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */; };
 		C8694540A53D3C1F44898E23 /* Pods_On_The_MapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */; };
 		EDAD913E2C8D475C3142D95D /* Pods_On_The_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0C3A9F91956C347A4B201C /* Pods_On_The_Map.framework */; };
@@ -65,6 +69,10 @@
 		6E862F1A1E2B613500D1067D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6E862F1C1E2B681700D1067D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureUI.swift; sourceTree = "<group>"; };
+		6ED70F3F1E2CB913001E8620 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/Bolts.framework"; sourceTree = "<group>"; };
+		6ED70F401E2CB913001E8620 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		852CCE917ADE5F075E2BF053 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CCDDD553B1BF25C4AFF58 /* Pods-On The MapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B0106C94A6F379DAFDFACFA0 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ED70F431E2CB913001E8620 /* Bolts.framework in Frameworks */,
+				6ED70F441E2CB913001E8620 /* FBSDKCoreKit.framework in Frameworks */,
+				6ED70F451E2CB913001E8620 /* FBSDKLoginKit.framework in Frameworks */,
+				6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */,
 				EDAD913E2C8D475C3142D95D /* Pods_On_The_Map.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +129,10 @@
 		1E51924A4C8AB87F42DE8030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6ED70F3F1E2CB913001E8620 /* Bolts.framework */,
+				6ED70F401E2CB913001E8620 /* FBSDKCoreKit.framework */,
+				6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */,
+				6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */,
 				FB0C3A9F91956C347A4B201C /* Pods_On_The_Map.framework */,
 				B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */,
 				3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */,
