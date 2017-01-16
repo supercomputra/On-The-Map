@@ -86,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E57A3401E2C698B00CA828E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E862EE91E2B56BE00D1067D /* LogInViewController.swift */,
+				6E862F181E2B60E300D1067D /* TableViewController.swift */,
+				6E862F1A1E2B613500D1067D /* MapViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		6E862EDB1E2B56BE00D1067D = {
 			isa = PBXGroup;
 			children = (
@@ -109,12 +119,10 @@
 		6E862EE61E2B56BE00D1067D /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				6E57A3401E2C698B00CA828E /* View Controllers */,
 				6E862EE71E2B56BE00D1067D /* AppDelegate.swift */,
-				6E862EE91E2B56BE00D1067D /* LogInViewController.swift */,
 				6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */,
 				6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */,
-				6E862F181E2B60E300D1067D /* TableViewController.swift */,
-				6E862F1A1E2B613500D1067D /* MapViewController.swift */,
 				6E862F1C1E2B681700D1067D /* Constants.swift */,
 				6E862EF11E2B56BE00D1067D /* Assets.xcassets */,
 				6E862EEB1E2B56BE00D1067D /* Main.storyboard */,

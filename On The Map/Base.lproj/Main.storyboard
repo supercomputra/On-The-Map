@@ -152,7 +152,18 @@
                     <view key="view" contentMode="scaleToFill" id="M56-eM-4df">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GPo-AF-ys7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GPo-AF-ys7" firstAttribute="leading" secondItem="M56-eM-4df" secondAttribute="leading" id="7gZ-3P-40K"/>
+                            <constraint firstItem="GPo-AF-ys7" firstAttribute="top" secondItem="M56-eM-4df" secondAttribute="top" id="Gfu-ml-XuR"/>
+                            <constraint firstAttribute="trailing" secondItem="GPo-AF-ys7" secondAttribute="trailing" id="IhW-QD-5ak"/>
+                            <constraint firstAttribute="bottom" secondItem="GPo-AF-ys7" secondAttribute="bottom" id="c7h-B1-Kxw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0FQ-A1-r6i">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="gPg-lN-VNT">
@@ -162,10 +173,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="GPo-AF-ys7" id="bdf-mo-LY1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXi-Nc-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4015" y="-242"/>
+            <point key="canvasLocation" x="4013.5999999999999" y="-242.42878560719643"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WQZ-RH-Sho">
