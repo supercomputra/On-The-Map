@@ -34,14 +34,14 @@ class LogInViewController: UIViewController {
         username = usernameTexField.text!
         password = passwordTextField.text!
         
-        requestToken()
+        postSession()
         
         
     }
 
     
     // Get request Token
-    private func requestToken() -> Void {
+    private func postSession() -> Void {
         
         presentActivityIndicator(start: true)
 
