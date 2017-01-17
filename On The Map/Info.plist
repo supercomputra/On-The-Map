@@ -63,7 +63,7 @@
         <string>fbshareextension</string>
     </array>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>My Reaseon</string>
-    
+    <string>My Reason</string>
+        
     </dict>
 </plist>
