@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -49,7 +49,7 @@
                                                 <rect key="frame" x="8" y="19" width="359" height="179"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvn-nX-hUv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="40"/>
+                                                        <rect key="frame" x="16" y="0.0" width="327" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="tX8-rb-es8"/>
                                                         </constraints>
@@ -58,7 +58,7 @@
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-l3-Nle">
-                                                        <rect key="frame" x="0.0" y="50" width="359" height="40"/>
+                                                        <rect key="frame" x="16" y="50" width="327" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="joX-OP-Gq3"/>
                                                         </constraints>
@@ -67,7 +67,7 @@
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqr-fM-QrO">
-                                                        <rect key="frame" x="0.0" y="100" width="359" height="40"/>
+                                                        <rect key="frame" x="16" y="100" width="327" height="40"/>
                                                         <color key="backgroundColor" red="0.20627092899999999" green="0.79289346540000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="Yfg-Ec-1ts"/>
@@ -99,12 +99,12 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="cqr-fM-QrO" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" id="4hM-ED-wxb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PcF-l3-Nle" secondAttribute="trailing" id="7tv-zY-JhY"/>
-                                                    <constraint firstItem="nvn-nX-hUv" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" id="OtW-n7-sjQ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cqr-fM-QrO" secondAttribute="trailing" id="Pp0-xQ-wJQ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nvn-nX-hUv" secondAttribute="trailing" id="WKA-Od-GCt"/>
-                                                    <constraint firstItem="PcF-l3-Nle" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" id="dIX-6O-fBh"/>
+                                                    <constraint firstItem="cqr-fM-QrO" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" constant="16" id="4hM-ED-wxb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PcF-l3-Nle" secondAttribute="trailing" constant="16" id="7tv-zY-JhY"/>
+                                                    <constraint firstItem="nvn-nX-hUv" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" constant="16" id="OtW-n7-sjQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cqr-fM-QrO" secondAttribute="trailing" constant="16" id="Pp0-xQ-wJQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nvn-nX-hUv" secondAttribute="trailing" constant="16" id="WKA-Od-GCt"/>
+                                                    <constraint firstItem="PcF-l3-Nle" firstAttribute="leading" secondItem="lFM-ng-dTR" secondAttribute="leading" constant="16" id="dIX-6O-fBh"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -117,7 +117,21 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2q-08-caT">
                                         <rect key="frame" x="0.0" y="431.5" width="375" height="215.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUf-ll-ym4" customClass="FBSDKLoginButton">
+                                                <rect key="frame" x="24" y="88" width="327" height="40"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="qos-eY-I08"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="hUf-ll-ym4" firstAttribute="centerY" secondItem="D2q-08-caT" secondAttribute="centerY" id="4Ca-5W-H0b"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="hUf-ll-ym4" secondAttribute="trailing" constant="16" id="6br-3G-eWb"/>
+                                            <constraint firstItem="hUf-ll-ym4" firstAttribute="leading" secondItem="D2q-08-caT" secondAttribute="leadingMargin" constant="16" id="MnG-pU-dDT"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -131,6 +145,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="facebookLoginButton" destination="hUf-ll-ym4" id="zha-Il-Yze"/>
                         <outlet property="logInButton" destination="cqr-fM-QrO" id="5FS-sT-JMl"/>
                         <outlet property="passwordTextField" destination="PcF-l3-Nle" id="lOu-Uu-KUj"/>
                         <outlet property="signUpButton" destination="ILx-jT-kgd" id="t4H-dT-Ejj"/>

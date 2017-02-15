@@ -19,6 +19,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var thirdQuarterView: UIView!
+    @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
     
     // Variables
     
@@ -42,13 +43,17 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         
     }
     
+    // LOGIN AND LOGOUT SETUP FOR FACEBOOK
+    
+    // Handling for if login complete
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         print("logged in")
         performUIUpdatesOnMain {
             self.presentNextView()
         }
     }
-
+    
+    // Handling for if login complete
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("logged out")
     }
@@ -57,6 +62,8 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     private func postSession() -> Void {
         
         presentActivityIndicator(start: true)
+        
+        
 
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         let body = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}"
@@ -171,8 +178,6 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         print("login success")
         
-        
-        
         performUIUpdatesOnMain {
             self.presentNextView()
         }
@@ -228,13 +233,10 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         setUIEnabled(true)
         
-        let loginButton = FBSDKLoginButton()
+        facebookLoginView = FBSDKLoginButton()
         // Optional: Place the button in the center of your view.
-        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        loginButton.delegate = self
-        loginButton.center = self.thirdQuarterView.center
-        self.view.addSubview(loginButton)
-        
+        facebookLoginView.readPermissions = ["public_profile", "email", "user_friends"]
+        facebookLoginView.delegate = self
         if (FBSDKAccessToken.current() != nil) {
             // User is logged in, do work such as go to next view controller.
             

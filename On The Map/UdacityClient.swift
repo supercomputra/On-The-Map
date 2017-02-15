@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UdcityClient: NSObject {
+class UdacityClient: NSObject {
     
     // Shared session
     var session = URLSession.shared
@@ -25,6 +25,8 @@ class UdcityClient: NSObject {
         super.init()
     }
     
+    // Task for GET
+    
     @discardableResult func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         // Set the parameters
@@ -32,7 +34,7 @@ class UdcityClient: NSObject {
         parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey as AnyObject?
         
         // Build the URL, Configure the request
-        let request = NSMutableURLRequest(url: tmdbURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(url: udacityURLFromParameters(parametersWithApiKey, withPathExtension: method))
         
         // Make the request
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
@@ -62,7 +64,7 @@ class UdcityClient: NSObject {
             }
             
             // Parse the data and use the data (happens in completion handler)
-            convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         /* 7. Start the request */
@@ -71,6 +73,8 @@ class UdcityClient: NSObject {
         return task
     }
     
+    // Task for POST
+    
     @discardableResult func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         // Set the parameters
@@ -78,7 +82,7 @@ class UdcityClient: NSObject {
         parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey as AnyObject?
         
         // 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: tmdbURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(url: udacityURLFromParameters(parametersWithApiKey, withPathExtension: method))
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -146,13 +150,13 @@ class UdcityClient: NSObject {
         completionHandlerForConvertData(parsedResult, nil)
     }
     
-    // create a URL from parameters
-    private func tmdbURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    // Create a URL from parameters
+    private func udacityURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = UdacityClient.Constants.ApiScheme
-        components.host = TMDBClient.Constants.ApiHost
-        components.path = TMDBClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.host = UdacityClient.Constants.ApiHost
+        components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
         for (key, value) in parameters {
@@ -165,9 +169,9 @@ class UdcityClient: NSObject {
     
     
     // MARK: Shared Instance
-    class func sharedInstance() -> TMDBClient {
+    class func sharedInstance() -> UdacityClient {
         struct Singleton {
-            static var sharedInstance = TMDBClient()
+            static var sharedInstance = UdacityClient()
         }
         return Singleton.sharedInstance
     }
