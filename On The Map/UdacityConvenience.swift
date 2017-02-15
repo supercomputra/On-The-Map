@@ -19,7 +19,7 @@ extension UdacityClient {
                 
                 // success! we have the requestToken!
                 print(requestToken!)
-                self.requestToken = requestToken
+                self.requestedToken = requestToken
                 
                 self.loginWithToken(requestToken, hostViewController: hostViewController) { (success, errorString) in
                     
@@ -56,6 +56,18 @@ extension UdacityClient {
                 completionHandlerForAuth(success, errorString)
             }
         }
+    }
+    
+    private func getToken(_ completionHandlerForToken: @escaping (_ success: Bool, _ requestToken: String?, _ errorString: String?) -> Void) {
+        
+        let login = LogInViewController()
+        
+        let body = "{\"udacity\": {\"username\": \"\(login.username!)\", \"password\": \"\(login.password!)\"}}"
+        
+        taskForPOSTMethod(Method.session, parameters: <#T##[String : AnyObject]#>, jsonBody: body) { (<#AnyObject?#>, <#NSError?#>) in
+            <#code#>
+        }
+        
     }
     
     private func getRequestToken(_ completionHandlerForToken: @escaping (_ success: Bool, _ requestToken: String?, _ errorString: String?) -> Void) {

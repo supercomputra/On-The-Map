@@ -145,7 +145,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="facebookLoginButton" destination="hUf-ll-ym4" id="zha-Il-Yze"/>
+                        <outlet property="facebookLoginButton" destination="hUf-ll-ym4" id="LPV-OA-o2s"/>
                         <outlet property="logInButton" destination="cqr-fM-QrO" id="5FS-sT-JMl"/>
                         <outlet property="passwordTextField" destination="PcF-l3-Nle" id="lOu-Uu-KUj"/>
                         <outlet property="signUpButton" destination="ILx-jT-kgd" id="t4H-dT-Ejj"/>

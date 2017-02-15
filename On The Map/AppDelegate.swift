@@ -83,25 +83,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-//extension AppDelegate {
-//    
-//    func ParseURLFromParameters(_ parameters: [String: AnyObject], withPathExtension: String? = nil) -> URL {
-//        
-//        let pathExtension = withPathExtension ?? ""
-//        var components = URLComponents()
-//        components.scheme = Constants.Parse.APIScheme
-//        components.host = Constants.Parse.APIHost
-//        components.path = Constants.Parse.APIPath + pathExtension
-//        components.queryItems = [URLQueryItem]()
-//        
-//        for (key, value) in parameters {
-//            let queryItem = URLQueryItem(name: key, value: "\(value)")
-//            components.queryItems!.append(queryItem)
-//        }
-//        
-//        return components.url!
-//        
-//    }
-//    
-//}
 

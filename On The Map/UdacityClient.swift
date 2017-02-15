@@ -29,14 +29,12 @@ class UdacityClient: NSObject {
     
     @discardableResult func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        // Set the parameters
-        var parametersWithApiKey = parameters
-        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey as AnyObject?
+        let request = NSMutableURLRequest(url: parseURLFromParameters(parameters, withPathExtension: method))
         
-        // Build the URL, Configure the request
-        let request = NSMutableURLRequest(url: udacityURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.Accept)
+        request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.ContentType)
         
-        // Make the request
+        
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {
@@ -57,17 +55,16 @@ class UdacityClient: NSObject {
                 return
             }
             
-            /* GUARD: Was there any data returned? */
+            // GUARD: Was there any data returned? */
             guard let data = data else {
                 sendError("No data was returned by the request!")
                 return
             }
             
-            // Parse the data and use the data (happens in completion handler)
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+            
         }
         
-        /* 7. Start the request */
         task.resume()
         
         return task
@@ -75,17 +72,14 @@ class UdacityClient: NSObject {
     
     // Task for POST
     
-    @discardableResult func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
-        
-        // Set the parameters
-        var parametersWithApiKey = parameters
-        parametersWithApiKey[ParameterKeys.ApiKey] = Constants.ApiKey as AnyObject?
+    @discardableResult func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject]?, jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         // 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: udacityURLFromParameters(parametersWithApiKey, withPathExtension: method))
+        let request = NSMutableURLRequest(url: udacityURLFromParameters(parameters, withPathExtension: method))
+        
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.Accept)
+        request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.ContentType)
         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
         
         // 4. Make the request */
@@ -94,7 +88,7 @@ class UdacityClient: NSObject {
             func sendError(_ error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(nil, NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
             }
             
             // GUARD: Was there an error?
