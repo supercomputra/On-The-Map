@@ -98,10 +98,4 @@ extension UdacityClient {
         static let MovieRating = "vote_average"
         
     }
-    
-    // MARK: Poster Sizes
-    struct PosterSizes {
-        static let RowPoster = TMDBClient.sharedInstance().config.posterSizes[2]
-        static let DetailPoster = TMDBClient.sharedInstance().config.posterSizes[4]
-    }
 }
