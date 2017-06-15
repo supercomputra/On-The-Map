@@ -7,105 +7,102 @@
 //
 
 import Foundation
+import UIKit
 
 extension UdacityClient {
     
-    func authenticateWithViewController(_ hostViewController: UIViewController, completionHandlerForAuth: @escaping (_ success: Bool, _ errorString: String?) -> Void) {
-        
-        // chain completion handlers for each request so that they run one after the other
-        getRequestToken() { (success, requestToken, errorString) in
-            
-            if success {
-                
-                // success! we have the requestToken!
-                print(requestToken!)
-                self.requestedToken = requestToken
-                
-                self.loginWithToken(requestToken, hostViewController: hostViewController) { (success, errorString) in
-                    
-                    if success {
-                        self.getSessionID(requestToken) { (success, sessionID, errorString) in
-                            
-                            if success {
-                                
-                                // success! we have the sessionID!
-                                self.sessionID = sessionID
-                                
-                                self.getUserID() { (success, userID, errorString) in
-                                    
-                                    if success {
-                                        
-                                        if let userID = userID {
-                                            
-                                            // and the userID 😄!
-                                            self.userID = userID
-                                        }
-                                    }
-                                    
-                                    completionHandlerForAuth(success, errorString)
-                                }
-                            } else {
-                                completionHandlerForAuth(success, errorString)
-                            }
-                        }
-                    } else {
-                        completionHandlerForAuth(success, errorString)
-                    }
-                }
-            } else {
-                completionHandlerForAuth(success, errorString)
-            }
-        }
+    enum PostSessionError: Error {
+        case requestFailed
+        case statusCodeIsNot2XX
+        case returnedDataIsNil
+        case parsingJSON
     }
     
-    private func postSession(_ completionHandlerForPostSession: @escaping (_ success: Bool,_ errorString: String?) -> Void) {
-        
-        let login = LogInViewController()
-        
-        let body = "{\"udacity\": {\"username\": \"\(login.username!)\", \"password\": \"\(login.password!)\"}}"
-        
-        taskForPOSTMethod(Method.Session, parameters: nil, jsonBody: body) { (data, error) in
-            if error != nil {
-                completionHandlerForPostSession(false, error.debugDescription)
-            }
-        }
-        
-        taskForPOSTMethod(Method.Session, parameters: nil, jsonBody: body) { (data, error) in
-            if let error = error {
-                completionHandlerForPostSession(false, error.debugDescription)
-            } else {
-                if let data = data {
-                    
-                }
-                
-                
-            }
-        }
-        
-    }
+    // Get request Token
+    typealias errorHandler = (_ inner: () throws -> Bool) -> ()
     
-    private func getRequestToken(_ completionHandlerForToken: @escaping (_ success: Bool, _ requestToken: String?, _ errorString: String?) -> Void) {
+    private func postSession(username: String, password: String, completion: @escaping errorHandler) {
         
-        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [String:AnyObject]()
+        let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         
-        /* 2. Make the request */
-        taskForGETMethod(Methods.AuthenticationTokenNew, parameters: parameters) { (results, error) in
+        let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
+        
+        let request = NSMutableURLRequest(url: sessionURL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = body.data(using: String.Encoding.utf8)
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            /* 3. Send the desired value(s) to completion handler */
-            if let error = error {
-                print(error)
-                completionHandlerForToken(false, nil, "Login Failed (Request Token).")
-            } else {
-                if let requestToken = results?[TMDBClient.JSONResponseKeys.RequestToken] as? String {
-                    completionHandlerForToken(true, requestToken, nil)
-                } else {
-                    print("Could not find \(TMDBClient.JSONResponseKeys.RequestToken) in \(results)")
-                    completionHandlerForToken(false, nil, "Login Failed (Request Token).")
-                }
+            let range = Range(uncheckedBounds: (5, data!.count))
+            let decryptedData = data?.subdata(in: range)
+            
+            
+            // Was there any error?
+            guard (error == nil) else {
+                // Handle error here
+                completion() { throw PostSessionError.requestFailed }
+                return
             }
-        }
-    }
+            
+            // Did we get a successfull 200 response?
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                // Handle error here
+                return
+            }
+            
+            // Was there any data returned?
+            guard let data = decryptedData else {
+                // Handle error here
+                return
+            }
+            
+            
+            // Parse the data
+            let parsedResult: [String: AnyObject]!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
+            } catch {
+                // Handle Error Here
+                return
+            }
+            
+            if statusCode != 200 {
+                
+                guard let errorMessage = parsedResult["error"] as? String else {
+                    // Handle Error Here
+                    return
+                }
+                
+                // Handle Error Here
+                
+            } else {
+                
+                guard let accountData = parsedResult["account"] as? [String: AnyObject] else {
+                    // Handle Error Here
+                    return
+                }
 
+                guard let isRegistered = accountData["registered"] as? Bool else {
+                    // Handle Error Here
+                    return
+                }
+                
+                if isRegistered {
+                    // Complete The Login here
+                } else {
+                    // Handle Error Here
+                }
+                
+            }
+            
+        }
+        
+        task.resume()
+        
+    }
     
 }

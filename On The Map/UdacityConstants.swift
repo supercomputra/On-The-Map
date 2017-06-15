@@ -9,15 +9,17 @@
 import Foundation
 
 extension UdacityClient {
-    
+
     struct Constants {
         static let ApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         static let JsonApplication = "application/json"
+    }
+    
+    struct Component {
         static let ApiScheme = "https"
         static let ApiHost = "udacity.com"
         static let ApiPath = "/api"
-        
     }
     
     struct Method {
@@ -41,7 +43,14 @@ extension UdacityClient {
     }
     
     struct ResponseKeys {
-        static let a = "a"
+        static let account = "account"
+        static let key = "key"
+        static let session = "session"
+        static let user = "user"
+        static let firstName = "first_name"
+        static let lastName = "last_name"
+        static let status = "status"
+        static let error = "error"
     }
 
 }

@@ -237,8 +237,8 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         facebookLoginButton = FBSDKLoginButton()
         // Optional: Place the button in the center of your view.
-        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        facebookLoginButton.delegate = self
+//        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+//        facebookLoginButton.delegate = self
         if (FBSDKAccessToken.current() != nil) {
             // User is logged in, do work such as go to next view controller.
             

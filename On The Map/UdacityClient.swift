@@ -154,9 +154,9 @@ class UdacityClient: NSObject {
     private func udacityURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
-        components.scheme = UdacityClient.Constants.ApiScheme
-        components.host = UdacityClient.Constants.ApiHost
-        components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.scheme = UdacityClient.Component.ApiScheme
+        components.host = UdacityClient.Component.ApiHost
+        components.path = UdacityClient.Component.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
         for (key, value) in parameters {
