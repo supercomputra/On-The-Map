@@ -16,12 +16,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Actions
     
-    @IBAction func logOutButtonItem(_ sender: Any) {
-        
-        deleteSession()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     private func deleteSession() -> Void {
         
         // Createing request
@@ -64,6 +58,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.

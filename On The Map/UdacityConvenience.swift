@@ -22,9 +22,7 @@ enum PostSessionError: Error {
 
 extension UdacityClient {
     
-    func postSession(username: String, password: String, completion: @escaping (_ error: PostSessionError?, _ errorDescription: String?, _ dictionary: [String: String]?) -> Void) {
-        
-        var sessionDictionary = [String: String]()
+    static func postSession(username: String, password: String, completion: @escaping (_ error: PostSessionError?, _ errorDescription: String?, _ session: Session?) -> Void) {
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         
@@ -36,9 +34,7 @@ extension UdacityClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: String.Encoding.utf8)
         
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
             let range = Range(uncheckedBounds: (5, data!.count))
             let decryptedData = data?.subdata(in: range)
@@ -91,18 +87,58 @@ extension UdacityClient {
                     completion(.noAccountDataReturned, nil, nil)
                     return
                 }
+
                 
-                sessionDictionary["expiration"] = expiration
-                sessionDictionary["id"] = id
-                sessionDictionary["key"] = key
+                let session = Session(id: id, key: key, expiration: expiration)
                 
-                completion(nil, nil, sessionDictionary)
+                completion(nil, nil, session)
                 
             }
             
         }
         
         task.resume()
+    }
+    
+    static func deleteSession() -> Void {
+        
+        // Createing request
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        
+        // Adding delete method into request
+        request.httpMethod = "DELETE"
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" {
+                xsrfCookie = cookie
+            }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            
+            if error != nil { // Handle error…
+                return
+            }
+            
+            print(data!)
+            
+            let range = Range(uncheckedBounds: (5, data!.count - 5))
+            let newData = data?.subdata(in: range) /* subset response data! */
+            print(newData!)
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+        }
+        task.resume()
+        
+        
+        
     }
     
 }

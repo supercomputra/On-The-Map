@@ -19,10 +19,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var session: Session?
+    
     var sharedSession: URLSession = URLSession.shared
     var requestToken: String? = nil
     var sessionID: String? = nil
     var userID: Int? = nil
+    
+    func isFirstLaunch() -> Void {
+        if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+            print("App has launched before")
+        } else {
+            print("This is the first launch of the app")
+            
+            print("Setting up value for key 'hasLaunchedBefore'...")
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            print("The value for hasLaunchedBefore is set to true")
+            
+            print("Setting up value for key 'isNightMode'...")
+            UserDefaults.standard.set(false, forKey: "isNightMode")
+            print("The value for isNightMode is set go false")
+            
+            UserDefaults.standard.synchronize()
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

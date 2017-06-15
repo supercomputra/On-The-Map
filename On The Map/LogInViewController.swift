@@ -31,6 +31,15 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let isAuthenticated = UserDefaults.standard.value(forKey: "isAuthenticated") as? Bool {
+            if isAuthenticated {
+                completeLogin()
+            }
+        } else {
+            UserDefaults.standard.set(false, forKey: "isAuthenticated")
+        }
+        
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         setUIEnabled(true)
@@ -58,9 +67,11 @@ class LogInViewController: UIViewController {
         
         presentActivityIndicator(start: true)
         
-        loginManager.postSession(username: username!, password: password!) { (error: PostSessionError?, errorDescription: String?, sessionDictionary: [String: String]?) in
+        UdacityClient.postSession(username: username!, password: password!) { (error: PostSessionError?, errorDescription: String?, session: Session?) in
             
             if error == nil {
+                UserDefaults.standard.set(true, forKey: "isAuthenticated")
+                self.appDelegate.session = session!
                 self.completeLogin()
             } else {
                 if errorDescription == nil {

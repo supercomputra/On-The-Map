@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -181,14 +181,7 @@
                             <constraint firstAttribute="bottom" secondItem="GPo-AF-ys7" secondAttribute="bottom" id="c7h-B1-Kxw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0FQ-A1-r6i">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="gPg-lN-VNT">
-                            <color key="tintColor" red="0.20627092899999999" green="0.79289346540000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="logOutButtonItem:" destination="r8T-P1-vRr" id="c8L-Xo-XQf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="0FQ-A1-r6i"/>
                     <connections>
                         <outlet property="mapView" destination="GPo-AF-ys7" id="bdf-mo-LY1"/>
                     </connections>
@@ -228,7 +221,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Wdk-Db-ax6" kind="relationship" relationship="rootViewController" id="rSc-zf-Ulo"/>
+                        <segue destination="2jC-9c-mq1" kind="relationship" relationship="rootViewController" id="1iC-bE-wKl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPs-WX-hbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,40 +229,48 @@
             <point key="canvasLocation" x="3123" y="496"/>
         </scene>
         <!--Table View Controller-->
-        <scene sceneID="oZ8-na-6HT">
+        <scene sceneID="3Ep-GT-WJ4">
             <objects>
-                <tableViewController id="Wdk-Db-ax6" customClass="TableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0lq-Ef-92H">
+                <viewController id="2jC-9c-mq1" customClass="TableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X5n-Xu-yb5"/>
+                        <viewControllerLayoutGuide type="bottom" id="oeC-lG-NBH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yDj-nq-Wno">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6gg-PR-Ss6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Student's Cell" id="wpI-nB-PU4">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wpI-nB-PU4" id="54u-cQ-SFw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="wCw-XY-n0G">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wCw-XY-n0G" id="4Cy-Fw-6Bx">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Wdk-Db-ax6" id="DOY-OR-bqH"/>
-                            <outlet property="delegate" destination="Wdk-Db-ax6" id="dZ0-Oy-WZi"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="jUv-g5-2Og">
-                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="znl-qU-HEK">
-                            <color key="tintColor" red="0.20627092899999999" green="0.79289346540000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="logOutButtonItem:" destination="Wdk-Db-ax6" id="6F3-Ru-WAi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KDF-rm-GW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6gg-PR-Ss6" secondAttribute="bottom" id="0JC-2C-zRt"/>
+                            <constraint firstItem="6gg-PR-Ss6" firstAttribute="leading" secondItem="yDj-nq-Wno" secondAttribute="leading" id="MMU-af-Pa0"/>
+                            <constraint firstAttribute="trailing" secondItem="6gg-PR-Ss6" secondAttribute="trailing" id="Xpf-W3-1rI"/>
+                            <constraint firstItem="6gg-PR-Ss6" firstAttribute="top" secondItem="yDj-nq-Wno" secondAttribute="top" id="lpK-C9-ib6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="518-tq-nfD"/>
+                    <connections>
+                        <outlet property="tableView" destination="6gg-PR-Ss6" id="awc-j7-z3w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="svV-lH-xXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4014" y="495"/>
+            <point key="canvasLocation" x="4032.8000000000002" y="494.30284857571218"/>
         </scene>
         <!--Item-->
         <scene sceneID="vAy-0r-p7K">
