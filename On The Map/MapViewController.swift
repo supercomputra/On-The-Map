@@ -9,27 +9,26 @@
 import UIKit
 import MapKit
 
-class MapViewController: MainViewController, MKMapViewDelegate {
+class MapViewController: MainViewController {
     
-    // Outlets
     @IBOutlet weak var mapView: MKMapView!
     
-    // Actions
-        override func viewDidLoad() {
+
+    override func viewDidLoad() {
         mapView.delegate = self
         super.viewDidLoad()
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         getAnnotations { (annotations: [MKPointAnnotation]) in
-            self.mapView.addAnnotations(annotations)
+            performUIUpdatesOnMain {
+                self.mapView.addAnnotations(annotations)
+            }
         }
-        
     }
-    
+}
+
+extension MapViewController: MKMapViewDelegate {
     // MARK: - MKMapViewDelegate
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -51,7 +50,7 @@ class MapViewController: MainViewController, MKMapViewDelegate {
     
     
     // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
+    
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
@@ -61,17 +60,14 @@ class MapViewController: MainViewController, MKMapViewDelegate {
             }
         }
     }
-    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //
-    //        if control == annotationView.rightCalloutAccessoryView {
-    //            let app = UIApplication.sharedApplication()
-    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-    //        }
-    //    }
     
-    // MARK: - Sample Data
-    
-    // Some sample data. This is a dictionary that is more or less similar to the
-    // JSON data that you will download from Parse.
-    
+    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if control == annotationView.rightCalloutAccessoryView {
+            let app = UIApplication.shared
+            let url = URL(string: ((annotationView.annotation?.subtitle)!)!)
+            app.open(url!, options: [ : ], completionHandler: nil)
+        }
+    }
+
 }
