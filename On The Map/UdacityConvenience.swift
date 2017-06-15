@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum RequestError: Error {
-    case requestFailed
+    case failedRequest
     case badResponse
     case noDataReturned
     case parsingFailed
@@ -22,7 +22,7 @@ enum RequestError: Error {
 
 extension UdacityClient {
     
-    static func postSession(username: String, password: String, completion: @escaping (_ error: RequestError?, _ errorDescription: String?, _ session: Session?) -> Void) {
+    static func postSession(username: String, password: String, completion: @escaping ( _ session: Session?,_ error: RequestError?, _ errorDescription: String?) -> Void) {
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         
@@ -39,58 +39,61 @@ extension UdacityClient {
             let range = Range(uncheckedBounds: (5, data!.count))
             let decryptedData = data?.subdata(in: range)
             
-            
-            // Was there any error?
             guard (error == nil) else {
-                completion(.requestFailed, nil, nil)
+                print(error.debugDescription)
+                completion(nil, .failedRequest, nil)
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                completion(.badResponse, nil, nil)
+                completion(nil, .badResponse, nil)
                 return
             }
+            
+            print(response.debugDescription)
             
             guard let data = decryptedData else {
-                completion(.noDataReturned, nil, nil)
+                completion(nil, .noDataReturned, nil)
                 return
             }
             
-            
-            // Parse the data
             let parsedResult: [String: AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
             } catch {
-                completion(.parsingFailed, nil, nil)
+                completion(nil, .parsingFailed, nil)
                 return
             }
             
-            if statusCode != 200 {
+            
+            let isStatusCode2XX = !(statusCode<300) && !(199<statusCode)
+            if isStatusCode2XX {
+                
+                guard let sessionData = parsedResult["session"] as? [String: AnyObject], let expiration = sessionData["expiration"] as? String, let id = sessionData["id"] as? String else {
+                    completion(nil, .noSessionDataReturned, nil)
+                    return
+                }
+                
+                guard let accountData = parsedResult["account"] as? [String: AnyObject], let key = accountData["key"] as? String else {
+                    completion(nil, .noAccountDataReturned, nil)
+                    return
+                }
+                
+                
+                let session = Session(id: id, key: key, expiration: expiration)
+                
+                completion(session, nil, nil)
+
+                
+                
+                
+            } else {
                 
                 guard let errorMessage = parsedResult["error"] as? String else {
                     return
                 }
                 
-                completion(.other, errorMessage, nil)
-                
-            } else {
-                
-                
-                guard let sessionData = parsedResult["session"] as? [String: AnyObject], let expiration = sessionData["expiration"] as? String, let id = sessionData["id"] as? String else {
-                    completion(.noSessionDataReturned, nil, nil)
-                    return
-                }
-                
-                guard let accountData = parsedResult["account"] as? [String: AnyObject], let key = accountData["key"] as? String else {
-                    completion(.noAccountDataReturned, nil, nil)
-                    return
-                }
-
-                
-                let session = Session(id: id, key: key, expiration: expiration)
-                
-                completion(nil, nil, session)
+                completion(nil, .other, errorMessage)
                 
             }
             

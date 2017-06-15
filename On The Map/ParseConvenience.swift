@@ -9,7 +9,7 @@
 import Foundation
 
 extension ParseClient {
-    static func getStudentLocation(completion: @escaping (_ error: RequestError?, _ students: [Student]?) -> Void) {
+    static func getStudentLocation(completion: @escaping (_ students: [Student]?, _ error: RequestError?, _ errorDescription: String?) -> Void) {
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -18,17 +18,17 @@ extension ParseClient {
             // Was there any error?
             
             guard (error == nil) else {
-                completion(.requestFailed, nil)
-                return
-            }
-            
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                completion(.badResponse, nil)
+                completion(nil, .failedRequest, nil)
                 return
             }
             
             guard let data = data else {
-                completion(.noDataReturned, nil)
+                completion(nil, .noDataReturned, nil)
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                completion(nil, .badResponse, nil)
                 return
             }
 
@@ -36,27 +36,40 @@ extension ParseClient {
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
             } catch {
-                completion(.parsingFailed, nil)
+                completion(nil, .parsingFailed, nil)
                 return
             }
             
-            guard let results = parsedResult["results"] as? [[String: AnyObject]] else {
-                return
+            let isStatusCode2XX = !(statusCode<300) && !(199<statusCode)
+            if isStatusCode2XX {
+                
+                guard let results = parsedResult["results"] as? [[String: AnyObject]] else {
+                    return
+                }
+                
+                var students = [Student]()
+                
+                for result in results {
+                    
+                    let location = Location(dictionary: result)
+                    
+                    let student = Student(dictionary: result, location: location)
+                    
+                    students.append(student)
+                }
+                
+                completion(students, nil, nil)
+                
+            } else {
+                
+                guard let errorMessage = parsedResult["error"] as? String else {
+                    return
+                }
+                
+                completion(nil, .other, errorMessage)
             }
             
-            var students = [Student]()
-            
-            for result in results {
-                
-                let location = Location(dictionary: result)
-                
-                                
-                let student = Student(dictionary: result, location: location)
-                
-                students.append(student)
-            }
-            completion(nil, students)
-        }
+                    }
         task.resume()
     }
 }

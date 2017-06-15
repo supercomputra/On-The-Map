@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     }
     
     func getStudents(_ completion: @escaping () -> Void) {
-        ParseClient.getStudentLocation { (error: RequestError?, students: [Student]?) in
+        ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in
             print("The number students returned is: \(students!.count)")
             self.students = students!
             completion()

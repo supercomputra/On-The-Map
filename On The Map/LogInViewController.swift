@@ -69,8 +69,7 @@ class LogInViewController: UIViewController {
         
         presentActivityIndicator(start: true)
         
-        UdacityClient.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?, session: Session?) in
-            
+        UdacityClient.postSession(username: username!, password: password!) { (session: Session?, error: RequestError?, errorDescription: String?) in
             if error == nil {
                 UserDefaults.standard.set(true, forKey: "isAuthenticated")
                 self.completeLogin()
