@@ -64,15 +64,15 @@ extension UdacityClient {
         
         let body = "{\"udacity\": {\"username\": \"\(login.username!)\", \"password\": \"\(login.password!)\"}}"
         
-        taskForPOSTMethod(Method.session, parameters: nil, jsonBody: body) { (data, error) in
+        taskForPOSTMethod(Method.Session, parameters: nil, jsonBody: body) { (data, error) in
             if error != nil {
-                completionHandlerForPostSession(false, error)
+                completionHandlerForPostSession(false, error.debugDescription)
             }
         }
         
         taskForPOSTMethod(Method.Session, parameters: nil, jsonBody: body) { (data, error) in
             if let error = error {
-                completionHandlerForPostSession(false, error)
+                completionHandlerForPostSession(false, error.debugDescription)
             } else {
                 if let data = data {
                     
