@@ -62,6 +62,8 @@ class LogInViewController: UIViewController {
             showAlert(alertTitle: "", alertMessage: "Username and Password you entered are wrong")
         }
         
+        // TODO: TextField checker before login
+        
         username = usernameTexField.text!
         password = passwordTextField.text!
         
@@ -71,7 +73,6 @@ class LogInViewController: UIViewController {
             
             if error == nil {
                 UserDefaults.standard.set(true, forKey: "isAuthenticated")
-                self.appDelegate.session = session!
                 self.completeLogin()
             } else {
                 if errorDescription == nil {

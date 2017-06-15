@@ -16,6 +16,7 @@ class TableViewController: MainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
     }
 
 }

@@ -102,11 +102,10 @@ extension UdacityClient {
     
     static func deleteSession() -> Void {
         
-        // Createing request
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        
-        // Adding delete method into request
+        let sessionURL = URL(string: "https://www.udacity.com/api/session")!
+        let request = NSMutableURLRequest(url: sessionURL)
         request.httpMethod = "DELETE"
+
         
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -124,16 +123,15 @@ extension UdacityClient {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
-            if error != nil { // Handle error…
+            if error != nil {
+                print(error!)
                 return
             }
             
-            print(data!)
+            let range = Range(uncheckedBounds: (5, data!.count))
+            let decryptedData = data?.subdata(in: range)
             
-            let range = Range(uncheckedBounds: (5, data!.count - 5))
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(newData!)
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+            print(NSString(data: decryptedData!, encoding: String.Encoding.utf8.rawValue)!)
         }
         task.resume()
         

@@ -11,14 +11,21 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let logOutBarButton = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOut))
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
+    
+    var logOutBarButton = UIBarButtonItem()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let barButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOut))
+        logOutBarButton = barButtonItem
     }
     
     func logOut() {
-        print(logOut())
+        self.dismiss(animated: true) {
+            print("View get dismissed")
+            UdacityClient.deleteSession()
+            UserDefaults.standard.set(false, forKey: "isAuthenticated")
+        }
     }
 }

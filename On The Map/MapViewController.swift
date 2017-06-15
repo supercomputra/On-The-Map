@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: MainViewController, MKMapViewDelegate {
     
     // Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -58,7 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON
