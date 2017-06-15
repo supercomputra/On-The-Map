@@ -50,8 +50,6 @@ extension UdacityClient {
                 return
             }
             
-            print(response.debugDescription)
-            
             guard let data = decryptedData else {
                 completion(nil, .noDataReturned, nil)
                 return
@@ -65,8 +63,8 @@ extension UdacityClient {
                 return
             }
             
+            let isStatusCode2XX = (statusCode<300) && (199<statusCode)
             
-            let isStatusCode2XX = !(statusCode<300) && !(199<statusCode)
             if isStatusCode2XX {
                 
                 guard let sessionData = parsedResult["session"] as? [String: AnyObject], let expiration = sessionData["expiration"] as? String, let id = sessionData["id"] as? String else {
@@ -83,17 +81,15 @@ extension UdacityClient {
                 let session = Session(id: id, key: key, expiration: expiration)
                 
                 completion(session, nil, nil)
-
-                
                 
                 
             } else {
                 
-                guard let errorMessage = parsedResult["error"] as? String else {
+                guard let errorDescription = parsedResult["error"] as? String else {
                     return
                 }
                 
-                completion(nil, .other, errorMessage)
+                completion(nil, .other, errorDescription)
                 
             }
             

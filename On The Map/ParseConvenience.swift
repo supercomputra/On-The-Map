@@ -40,7 +40,7 @@ extension ParseClient {
                 return
             }
             
-            let isStatusCode2XX = !(statusCode<300) && !(199<statusCode)
+            let isStatusCode2XX = (statusCode<300) && (199<statusCode)
             if isStatusCode2XX {
                 
                 guard let results = parsedResult["results"] as? [[String: AnyObject]] else {
@@ -53,9 +53,11 @@ extension ParseClient {
                     
                     let location = Location(dictionary: result)
                     
-                    let student = Student(dictionary: result, location: location)
+                    if location.coordinate != nil {
+                        let student = Student(dictionary: result, location: location)
+                        students.append(student)
+                    }
                     
-                    students.append(student)
                 }
                 
                 completion(students, nil, nil)
