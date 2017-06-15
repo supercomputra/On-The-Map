@@ -253,6 +253,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2jC-9c-mq1" id="6XE-M5-Kmn"/>
+                                    <outlet property="delegate" destination="2jC-9c-mq1" id="5Nd-OX-7CO"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

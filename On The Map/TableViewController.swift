@@ -17,6 +17,12 @@ class TableViewController: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
+        getStudents { (students: [Student]) in
+            self.students = students
+            performUIUpdatesOnMain {
+                self.tableView.reloadData()
+            }
+        }
     }
 
 }
@@ -25,8 +31,9 @@ class TableViewController: MainViewController {
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Student's Cell", for: indexPath)
-        cell.textLabel?.text = "Student Label"
-        cell.detailTextLabel?.text = "Student detail"
+        let student = students[indexPath.row]
+        cell.textLabel?.text = (student.firstName ?? "") + " " + (student.lastName ?? "")
+        cell.detailTextLabel?.text = String(describing: student.mediaURL)
         return cell
     }
 }
@@ -34,6 +41,6 @@ extension TableViewController: UITableViewDelegate {
 // Table View Data Source
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.students.count
     }
 }

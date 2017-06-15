@@ -31,18 +31,19 @@ class MainViewController: UIViewController {
         }
     }
     
-    func getStudents(_ completion: @escaping () -> Void) {
+    func getStudents(_ completion: @escaping (_ students: [Student]) -> Void) {
         ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in
-            print("The number students returned is: \(students!.count)")
-            self.students = students!
-            completion()
+            guard students != nil else {
+                return
+            }
+            completion(students!)
         }
     }
     
     func getAnnotations(_ completion: @escaping (_ completion: [MKPointAnnotation])-> Void) {
         var annotations = [MKPointAnnotation]()
-        getStudents {
-            for student in self.students {
+        getStudents { (students: [Student]) in
+            for student in students {
                 let annotation = MKPointAnnotation()
                 if let coordinate = student.location?.coordinate {
                     annotation.coordinate = coordinate
