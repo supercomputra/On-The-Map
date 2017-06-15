@@ -13,20 +13,16 @@ struct Student {
     let uniqueKey: String
     let firstName: String
     let lastName: String
-    let mapString: String
     let mediaURL: URL
-    let latitude: Float
-    let longitude: Float
+    let location: Location
     
-    init(objectID: String, uniqueKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Int, longitude: Int) {
+    
+    init(objectID: String, uniqueKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Double, longitude: Double) {
         self.objectID = objectID
         self.uniqueKey = uniqueKey
         self.firstName = firstName
         self.lastName = lastName
-        self.mapString = mapString
         self.mediaURL = URL(string: mediaURL)!
-        self.latitude = Float(latitude)
-        self.longitude = Float(longitude)
-        
+        self.location = Location(latitude: latitude, longitude: longitude, mapString: mapString)
     }
 }
