@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum PostSessionError: Error {
+enum RequestError: Error {
     case requestFailed
     case badResponse
     case noDataReturned
@@ -22,7 +22,7 @@ enum PostSessionError: Error {
 
 extension UdacityClient {
     
-    static func postSession(username: String, password: String, completion: @escaping (_ error: PostSessionError?, _ errorDescription: String?, _ session: Session?) -> Void) {
+    static func postSession(username: String, password: String, completion: @escaping (_ error: RequestError?, _ errorDescription: String?, _ session: Session?) -> Void) {
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         
@@ -61,7 +61,6 @@ extension UdacityClient {
             let parsedResult: [String: AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
-                print(parsedResult)
             } catch {
                 completion(.parsingFailed, nil, nil)
                 return

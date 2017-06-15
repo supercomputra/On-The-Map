@@ -69,7 +69,7 @@ class LogInViewController: UIViewController {
         
         presentActivityIndicator(start: true)
         
-        UdacityClient.postSession(username: username!, password: password!) { (error: PostSessionError?, errorDescription: String?, session: Session?) in
+        UdacityClient.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?, session: Session?) in
             
             if error == nil {
                 UserDefaults.standard.set(true, forKey: "isAuthenticated")
@@ -84,7 +84,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    
+    // Get student data
     
     // Complete Login
     private func completeLogin() -> Void {
