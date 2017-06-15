@@ -9,19 +9,22 @@
 import Foundation
 import UIKit
 
+enum PostSessionError: Error {
+    case requestFailed
+    case badResponse
+    case noDataReturned
+    case parsingFailed
+    case noSessionDataReturned
+    case noAccountDataReturned
+    case noAccountRegistered
+    case other
+}
+
 extension UdacityClient {
     
-    enum PostSessionError: Error {
-        case requestFailed
-        case statusCodeIsNot2XX
-        case returnedDataIsNil
-        case parsingJSON
-    }
-    
-    // Get request Token
-    typealias errorHandler = (_ inner: () throws -> Bool) -> ()
-    
-    private func postSession(username: String, password: String, completion: @escaping errorHandler) {
+    func postSession(username: String, password: String, completion: @escaping (_ error: PostSessionError?, _ errorDescription: String?, _ dictionary: [String: String]?) -> Void) {
+        
+        var sessionDictionary = [String: String]()
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         
@@ -43,20 +46,17 @@ extension UdacityClient {
             
             // Was there any error?
             guard (error == nil) else {
-                // Handle error here
-                completion() { throw PostSessionError.requestFailed }
+                completion(.requestFailed, nil, nil)
                 return
             }
             
-            // Did we get a successfull 200 response?
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                // Handle error here
+                completion(.badResponse, nil, nil)
                 return
             }
             
-            // Was there any data returned?
             guard let data = decryptedData else {
-                // Handle error here
+                completion(.noDataReturned, nil, nil)
                 return
             }
             
@@ -65,44 +65,44 @@ extension UdacityClient {
             let parsedResult: [String: AnyObject]!
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
+                print(parsedResult)
             } catch {
-                // Handle Error Here
+                completion(.parsingFailed, nil, nil)
                 return
             }
             
             if statusCode != 200 {
                 
                 guard let errorMessage = parsedResult["error"] as? String else {
-                    // Handle Error Here
                     return
                 }
                 
-                // Handle Error Here
+                completion(.other, errorMessage, nil)
                 
             } else {
                 
-                guard let accountData = parsedResult["account"] as? [String: AnyObject] else {
-                    // Handle Error Here
-                    return
-                }
-
-                guard let isRegistered = accountData["registered"] as? Bool else {
-                    // Handle Error Here
+                
+                guard let sessionData = parsedResult["session"] as? [String: AnyObject], let expiration = sessionData["expiration"] as? String, let id = sessionData["id"] as? String else {
+                    completion(.noSessionDataReturned, nil, nil)
                     return
                 }
                 
-                if isRegistered {
-                    // Complete The Login here
-                } else {
-                    // Handle Error Here
+                guard let accountData = parsedResult["account"] as? [String: AnyObject], let key = accountData["key"] as? String else {
+                    completion(.noAccountDataReturned, nil, nil)
+                    return
                 }
+                
+                sessionDictionary["expiration"] = expiration
+                sessionDictionary["id"] = id
+                sessionDictionary["key"] = key
+                
+                completion(nil, nil, sessionDictionary)
                 
             }
             
         }
         
         task.resume()
-        
     }
     
 }

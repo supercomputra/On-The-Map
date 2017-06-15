@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LogInViewController: UIViewController {
     
     // Outlets
     
@@ -27,6 +27,24 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     var username: String?
     var password: String?
     var validAccount: Bool = false
+    let loginManager = UdacityClient()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        setUIEnabled(true)
+        
+        /*
+        
+        facebookLoginButton = FBSDKLoginButton()
+        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        facebookLoginButton.delegate = self
+        if (FBSDKAccessToken.current() != nil) {
+         // User is logged in, do work such as go to next view controller.
+        }
+        */
+    }
     
     // Actions
 
@@ -38,156 +56,34 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         username = usernameTexField.text!
         password = passwordTextField.text!
         
-        postSession()
-        
-        
-    }
-    
-    // LOGIN AND LOGOUT SETUP FOR FACEBOOK
-    
-    // Handling for if login complete
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        print("logged in")
-        performUIUpdatesOnMain {
-            self.presentNextView()
-        }
-    }
-    
-    // Handling for if login complete
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("logged out")
-    }
-    
-    // Get request Token
-    private func postSession() -> Void {
-        
         presentActivityIndicator(start: true)
         
-        
-        
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        let body = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}"
-        
-        
-        
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = body.data(using: String.Encoding.utf8)
-
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+        loginManager.postSession(username: username!, password: password!) { (error: PostSessionError?, errorDescription: String?, sessionDictionary: [String: String]?) in
             
-            func displayError(_ error: String) {
-                performUIUpdatesOnMain {
-                    self.showAlert(alertTitle: "Error", alertMessage: error)
-                }
-            }
-            
-            let range = Range(uncheckedBounds: (5, data!.count))
-            let securedData = data?.subdata(in: range)
-            
-            
-            // Was there any error?
-            guard (error == nil) else {
-                displayError("There was an error")
-                return
-            }
-            
-            // Did we get a successfull 200 response?
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                displayError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            // Was there any data returned?
-            guard let data = securedData else {
-                displayError("No data was returned by the request")
-                return
-            }
-            
-            
-            // Parse the data
-            let parsedResult: [String: AnyObject]!
-            do {
-                parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
-            } catch {
-                displayError(String(describing: error))
-                return
-            }
-            
-            if statusCode != 200 {
-                
-                guard let errorMessage = parsedResult["error"] as? String else {
-                    displayError(String(describing: error))
-                    return
-                }
-                
-                performUIUpdatesOnMain {
-                    self.presentActivityIndicator(start: false)
-                }
-                
-                displayError(errorMessage)
-                
+            if error == nil {
+                self.completeLogin()
             } else {
-                
-                print("\(parsedResult!)")
-                
-                print("Taking accountData")
-                
-                guard let accountData = parsedResult["account"] as? [String: AnyObject] else {
-                    displayError(String(describing: error))
-                    return
-                }
-                
-                print(accountData)
-                
-                
-                print("Taking registrationStatus")
-                guard let registrationStatus = accountData["registered"] as? Bool else {
-                    displayError(String(describing: error))
-                    return
-                }
-                
-                print(registrationStatus)
-                
-                if registrationStatus {
-                    self.validAccount = true
+                if errorDescription == nil {
+                    self.displayError("Error \(error.debugDescription) occurs")
                 } else {
-                    displayError("Username and password invalid")
+                    self.displayError(errorDescription!)
                 }
-                
-                performUIUpdatesOnMain {
-                    self.presentActivityIndicator(start: false)
-                }
-                
-                
-                if self.validAccount {
-                    self.completeLogin()
-                }
-                
             }
- 
         }
-        
-        task.resume()
-        
     }
+    
     
     
     // Complete Login
     private func completeLogin() -> Void {
-        
-        print("login success")
-        
         performUIUpdatesOnMain {
+            self.presentActivityIndicator(start: false)
             self.presentNextView()
         }
-        
     }
     
     // Presenting next view
-    private func presentNextView() -> Void {
+    func presentNextView() -> Void {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let homeTabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! UITabBarController
         self.present(homeTabBarController, animated: true, completion: nil)
@@ -195,7 +91,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // Presenting UI alert view
     private func showAlert(alertTitle: String, alertMessage: String) -> Void {
-        let alert = UIAlertController(title: alertTitle, message: displayError(errorMessage: alertMessage), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
         alert.addAction(destructive)
         present(alert, animated: true, completion: nil)
@@ -218,34 +114,39 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else {
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     // Displaying error message
-    private func displayError(errorMessage: String) -> String {
-        return errorMessage
+    func displayError(_ error: String) {
+        performUIUpdatesOnMain {
+            self.presentActivityIndicator(start: false)
+            self.showAlert(alertTitle: "Error", alertMessage: error)
+        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Get the AppDelegate
-        
-        appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        setUIEnabled(true)
-        
-        facebookLoginButton = FBSDKLoginButton()
-        // Optional: Place the button in the center of your view.
-//        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
-//        facebookLoginButton.delegate = self
-        if (FBSDKAccessToken.current() != nil) {
-            // User is logged in, do work such as go to next view controller.
-            
+    
+}
+
+// Facebook
+
+extension LogInViewController: FBSDKLoginButtonDelegate {
+    
+    // LOGIN AND LOGOUT SETUP FOR FACEBOOK
+    
+    // Handling for if login complete
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        print("logged in")
+        performUIUpdatesOnMain {
+            self.presentNextView()
         }
-        
+    }
+    
+    // Handling for if login complete
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("logged out")
     }
 
+    
 }
 
 private extension LogInViewController {
