@@ -58,14 +58,28 @@ extension UdacityClient {
         }
     }
     
-    private func getToken(_ completionHandlerForToken: @escaping (_ success: Bool, _ requestToken: String?, _ errorString: String?) -> Void) {
+    private func postSession(_ completionHandlerForPostSession: @escaping (_ success: Bool,_ errorString: String?) -> Void) {
         
         let login = LogInViewController()
         
         let body = "{\"udacity\": {\"username\": \"\(login.username!)\", \"password\": \"\(login.password!)\"}}"
         
-        taskForPOSTMethod(Method.session, parameters: <#T##[String : AnyObject]#>, jsonBody: body) { (<#AnyObject?#>, <#NSError?#>) in
-            <#code#>
+        taskForPOSTMethod(Method.session, parameters: nil, jsonBody: body) { (data, error) in
+            if error != nil {
+                completionHandlerForPostSession(false, error)
+            }
+        }
+        
+        taskForPOSTMethod(Method.Session, parameters: nil, jsonBody: body) { (data, error) in
+            if let error = error {
+                completionHandlerForPostSession(false, error)
+            } else {
+                if let data = data {
+                    
+                }
+                
+                
+            }
         }
         
     }

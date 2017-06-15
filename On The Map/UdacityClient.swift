@@ -55,8 +55,11 @@ class UdacityClient: NSObject {
                 return
             }
             
+            let range = Range(uncheckedBounds: (5, data!.count))
+            let securedData = data?.subdata(in: range)
+            
             // GUARD: Was there any data returned? */
-            guard let data = data else {
+            guard let data = securedData else {
                 sendError("No data was returned by the request!")
                 return
             }
@@ -103,8 +106,11 @@ class UdacityClient: NSObject {
                 return
             }
             
+            let range = Range(uncheckedBounds: (5, data!.count))
+            let securedData = data?.subdata(in: range)
+            
             // GUARD: Was there any data returned?
-            guard let data = data else {
+            guard let data = securedData else {
                 sendError("No data was returned by the request!")
                 return
             }

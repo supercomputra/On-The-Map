@@ -64,10 +64,12 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         presentActivityIndicator(start: true)
         
         
-
+        
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         let body = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}"
-
+        
+        
+        
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
