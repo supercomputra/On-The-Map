@@ -13,7 +13,7 @@ class DataSource: NSObject {
     static var students = [Student]()
     
     static func getStudents(_ completion: @escaping (_ students: [Student]) -> Void) {
-        ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in
+        Parse.getStudentsLocation { (students: [Student]?, error: NSError?) in
             guard students != nil else {
                 return
             }
@@ -25,7 +25,7 @@ class DataSource: NSObject {
     }
     
     static func getStudents() {
-        ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in
+        Parse.getStudentsLocation { (students: [Student]?, error: NSError?) in
             guard students != nil else {
                 return
             }

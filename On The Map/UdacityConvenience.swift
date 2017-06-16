@@ -24,7 +24,7 @@ extension Udacity {
     
     // TODO: Refactor postSession
     
-    static func postSession(username: String, password: String, completion: @escaping ( _ session: Session?,_ error: RequestError?, _ errorDescription: String?) -> Void) {
+    static func postSession(username: String, password: String, completion: @escaping (_ error: RequestError?, _ errorDescription: String?) -> Void) {
         
         let postSessionURL = URL(string: "https://www.udacity.com/api/session")!
         
@@ -46,17 +46,17 @@ extension Udacity {
             
             guard (error == nil) else {
                 print(error.debugDescription)
-                completion(nil, .failedRequest, nil)
+                completion(.failedRequest, nil)
                 return
             }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                completion(nil, .badResponse, nil)
+                completion(.badResponse, nil)
                 return
             }
             
             guard let data = decryptedData else {
-                completion(nil, .noDataReturned, nil)
+                completion(.noDataReturned, nil)
                 return
             }
             
@@ -64,7 +64,7 @@ extension Udacity {
             do {
                 parsedResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: AnyObject]
             } catch {
-                completion(nil, .parsingFailed, nil)
+                completion(.parsingFailed, nil)
                 return
             }
             
@@ -73,19 +73,23 @@ extension Udacity {
             if isStatusCode2XX {
                 
                 guard let sessionData = parsedResult["session"] as? [String: AnyObject], let expiration = sessionData["expiration"] as? String, let id = sessionData["id"] as? String else {
-                    completion(nil, .noSessionDataReturned, nil)
+                    completion(.noSessionDataReturned, nil)
                     return
                 }
                 
                 guard let accountData = parsedResult["account"] as? [String: AnyObject], let key = accountData["key"] as? String else {
-                    completion(nil, .noAccountDataReturned, nil)
+                    completion(.noAccountDataReturned, nil)
                     return
                 }
                 
                 
-                let session = Session(id: id, key: key, expiration: expiration)
+                let session = SessionManager.Session(id: id, key: key, expiration: expiration)
                 
-                completion(session, nil, nil)
+                SessionManager.session = session
+                let uniqueKey = session.key
+                UserDefaults.standard.set(uniqueKey, forKey: "uniqueKey")
+                
+                completion(nil, nil)
                 
                 
             } else {
@@ -94,7 +98,7 @@ extension Udacity {
                     return
                 }
                 
-                completion(nil, .other, errorDescription)
+                completion(.other, errorDescription)
                 
             }
             

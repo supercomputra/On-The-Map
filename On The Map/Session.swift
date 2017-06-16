@@ -8,14 +8,20 @@
 
 import Foundation
 
-struct Session {
-    var id: String
-    var expiration: String
-    var key: String
+class SessionManager: NSObject {
     
-    init(id: String, key: String, expiration: String) {
-        self.id = id
-        self.key = key
-        self.expiration = expiration
+    static var session: Session? = nil
+    
+    struct Session {
+        var id: String
+        var expiration: String
+        var key: String
+        
+        init(id: String, key: String, expiration: String) {
+            self.id = id
+            self.key = key
+            self.expiration = expiration
+        }
     }
+    
 }

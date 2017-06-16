@@ -14,7 +14,7 @@
 		6E6424431EF2855700ED473B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6424421EF2855700ED473B /* Session.swift */; };
 		6E657D2D1E55960B000CA82E /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657D2C1E55960B000CA82E /* ParseConvenience.swift */; };
 		6E7232721E5499B400D754AB /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232711E5499B400D754AB /* UdacityConvenience.swift */; };
-		6E7232751E54AD9200D754AB /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232741E54AD9200D754AB /* ParseClient.swift */; };
+		6E7232751E54AD9200D754AB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232741E54AD9200D754AB /* Parse.swift */; };
 		6E7232771E54AE6A00D754AB /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232761E54AE6A00D754AB /* ParseConstants.swift */; };
 		6E7ABC6E1EF3AE3300CE1651 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC6D1EF3AE3300CE1651 /* PostViewController.swift */; };
 		6E7ABC701EF3AFDF00CE1651 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC6F1EF3AFDF00CE1651 /* PostingViewController.swift */; };
@@ -70,7 +70,7 @@
 		6E6424421EF2855700ED473B /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = "On The Map/Session.swift"; sourceTree = "<group>"; };
 		6E657D2C1E55960B000CA82E /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConvenience.swift; path = "On The Map/ParseConvenience.swift"; sourceTree = "<group>"; };
 		6E7232711E5499B400D754AB /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityConvenience.swift; path = "On The Map/UdacityConvenience.swift"; sourceTree = "<group>"; };
-		6E7232741E54AD9200D754AB /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseClient.swift; path = "On The Map/ParseClient.swift"; sourceTree = "<group>"; };
+		6E7232741E54AD9200D754AB /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parse.swift; path = "On The Map/Parse.swift"; sourceTree = "<group>"; };
 		6E7232761E54AE6A00D754AB /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = "On The Map/ParseConstants.swift"; sourceTree = "<group>"; };
 		6E7ABC6D1EF3AE3300CE1651 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		6E7ABC6F1EF3AFDF00CE1651 /* PostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		6E7232731E54AD7A00D754AB /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				6E7232741E54AD9200D754AB /* ParseClient.swift */,
+				6E7232741E54AD9200D754AB /* Parse.swift */,
 				6E7232761E54AE6A00D754AB /* ParseConstants.swift */,
 				6E657D2C1E55960B000CA82E /* ParseConvenience.swift */,
 			);
@@ -608,7 +608,7 @@
 				6E862EE81E2B56BE00D1067D /* AppDelegate.swift in Sources */,
 				6E7ABC701EF3AFDF00CE1651 /* PostingViewController.swift in Sources */,
 				6EA3DBB21E54881B005FD5BF /* Udacity.swift in Sources */,
-				6E7232751E54AD9200D754AB /* ParseClient.swift in Sources */,
+				6E7232751E54AD9200D754AB /* Parse.swift in Sources */,
 				6E7232771E54AE6A00D754AB /* ParseConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

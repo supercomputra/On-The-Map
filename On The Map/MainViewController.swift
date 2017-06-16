@@ -64,7 +64,8 @@ class MainViewController: UIViewController {
         dismiss(animated: true) {
             print("View get dismissed")
             Udacity.deleteSession()
-            UserDefaults.standard.set(false, forKey: "isAuthenticated")
+            UserDefaults.standard.removeObject(forKey: "uniqueKey")
+            UserDefaults.standard.synchronize()
         }
     }
     

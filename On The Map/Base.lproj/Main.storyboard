@@ -330,6 +330,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="finishButton" destination="fDo-50-ieR" id="QaA-4r-tKt"/>
                         <outlet property="mapView" destination="Gtn-VG-Re8" id="N2L-xr-XIc"/>
                     </connections>
                 </viewController>

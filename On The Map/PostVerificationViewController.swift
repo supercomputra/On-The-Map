@@ -11,6 +11,8 @@ import MapKit
 
 class PostVerificationViewController: PostingViewController {
     
+    @IBOutlet weak var finishButton: UIButton!
+    
     static var placemark: CLPlacemark? = nil
 
     @IBOutlet weak var mapView: MKMapView!
@@ -18,6 +20,7 @@ class PostVerificationViewController: PostingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.showAnnotations([MKPlacemark(placemark: PostVerificationViewController.placemark!)], animated: true)
+        finishButton.addTarget(self, action: #selector(finish), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +28,18 @@ class PostVerificationViewController: PostingViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func finish() {
+        print("finish button is tapped")
+        let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as! String
+        Parse.getStudentLocation(uniqueKey: uniqueKey) { (student: Student?, error: NSError?) in
+            guard error == nil else{
+                print(error.debugDescription)
+                return
+            }
+            
+            print(student.debugDescription)
+        }
+    }
 
     /*
     // MARK: - Navigation
