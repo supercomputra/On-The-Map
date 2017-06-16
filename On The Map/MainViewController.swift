@@ -21,9 +21,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard var viewControllers = self.tabBarController?.viewControllers else {
             return
         }
+        
+        title = "On The Map"
         
         let mapViewTabBar:UITabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_mapview-selected").withRenderingMode(.alwaysTemplate), selectedImage: #imageLiteral(resourceName: "icon_mapview-deselected").withRenderingMode(.alwaysOriginal))
         mapViewTabBar.title = nil
@@ -42,11 +45,17 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         
         let logOutBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
-        
         let font = UIFont.boldSystemFont(ofSize: 15.0)
         logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: Udacity.Color.blue], for:UIControlState.normal)
-        
         logOutBarButton = logOutBarButtonItem
+        
+        let addBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_addpin"), style: .plain, target: self, action: #selector(add))
+        addBarButtonItem.tintColor = Udacity.Color.blue
+        let refreshBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))
+        refreshBarButtonItem.tintColor = Udacity.Color.blue
+        
+        navigationItem.rightBarButtonItems = [addBarButtonItem, refreshBarButtonItem]
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,6 +68,14 @@ class MainViewController: UIViewController {
             Udacity.deleteSession()
             UserDefaults.standard.set(false, forKey: "isAuthenticated")
         }
+    }
+    
+    func add() {
+        print("Add button tapped")
+    }
+    
+    func refresh() {
+        print("Refresh button tapped")
     }
     
     func getStudents(_ completion: @escaping (_ students: [Student]) -> Void) {
@@ -97,6 +114,8 @@ class MainViewController: UIViewController {
             completion(annotations)
         }
     }
+    
+    
     
     func openURLInSafariViewController(stringURL: String) {
         

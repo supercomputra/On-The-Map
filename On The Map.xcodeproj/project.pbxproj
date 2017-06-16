@@ -26,7 +26,7 @@
 		6E862F0B1E2B56BF00D1067D /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F0A1E2B56BF00D1067D /* On_The_MapUITests.swift */; };
 		6E862F191E2B60E300D1067D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F181E2B60E300D1067D /* TableViewController.swift */; };
 		6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1A1E2B613500D1067D /* MapViewController.swift */; };
-		6E862F1F1E2B68B700D1067D /* ConfigureUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */; };
+		6E862F1F1E2B68B700D1067D /* UIStateControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1E1E2B68B700D1067D /* UIStateControl.swift */; };
 		6E9864A11EF3770400F41069 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9864A01EF3770400F41069 /* MainTabBarController.swift */; };
 		6EA3DBB21E54881B005FD5BF /* Udacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DBB11E54881B005FD5BF /* Udacity.swift */; };
 		6EA3DBB41E548938005FD5BF /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DBB31E548938005FD5BF /* UdacityConstants.swift */; };
@@ -85,7 +85,7 @@
 		6E862F0C1E2B56BF00D1067D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E862F181E2B60E300D1067D /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		6E862F1A1E2B613500D1067D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigureUI.swift; sourceTree = "<group>"; };
+		6E862F1E1E2B68B700D1067D /* UIStateControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStateControl.swift; sourceTree = "<group>"; };
 		6E9864A01EF3770400F41069 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		6EA3DBB11E54881B005FD5BF /* Udacity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Udacity.swift; path = "On The Map/Udacity.swift"; sourceTree = "<group>"; };
 		6EA3DBB31E548938005FD5BF /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityConstants.swift; path = "On The Map/UdacityConstants.swift"; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		6E72326F1E54936100D754AB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6E862F1E1E2B68B700D1067D /* ConfigureUI.swift */,
+				6E862F1E1E2B68B700D1067D /* UIStateControl.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -240,6 +240,7 @@
 				6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */,
 				6E72326F1E54936100D754AB /* View */,
 				6E57A3401E2C698B00CA828E /* Controller */,
+				6EA3DBAF1E54879D005FD5BF /* Clients */,
 				6EA3DBAE1E548790005FD5BF /* Model */,
 				6E72326E1E54934900D754AB /* Asset */,
 			);
@@ -267,7 +268,6 @@
 		6EA3DBAE1E548790005FD5BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6EA3DBAF1E54879D005FD5BF /* Clients */,
 				6E64243C1EF245C500ED473B /* Student.swift */,
 				6E64243E1EF245D200ED473B /* Location.swift */,
 				6E6424421EF2855700ED473B /* Session.swift */,
@@ -283,6 +283,7 @@
 				6EA3DBB01E5487A8005FD5BF /* Udacity */,
 			);
 			name = Clients;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		6EA3DBB01E5487A8005FD5BF /* Udacity */ = {
@@ -585,7 +586,7 @@
 				6EA3DBB41E548938005FD5BF /* UdacityConstants.swift in Sources */,
 				6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */,
 				6E7232721E5499B400D754AB /* UdacityConvenience.swift in Sources */,
-				6E862F1F1E2B68B700D1067D /* ConfigureUI.swift in Sources */,
+				6E862F1F1E2B68B700D1067D /* UIStateControl.swift in Sources */,
 				6E64243D1EF245C500ED473B /* Student.swift in Sources */,
 				6E862EEA1E2B56BE00D1067D /* LogInViewController.swift in Sources */,
 				6E6424411EF27A0600ED473B /* MainViewController.swift in Sources */,
