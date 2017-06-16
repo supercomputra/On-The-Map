@@ -11,7 +11,6 @@ import MapKit
 
 class DataSource: NSObject {
     static var students = [Student]()
-    static var placemark = CLPlacemark()
     
     static func getStudents(_ completion: @escaping (_ students: [Student]) -> Void) {
         ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in

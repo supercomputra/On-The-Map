@@ -51,16 +51,38 @@ class PostViewController: PostingViewController {
                 self.presentErrorAlertController("Couldn't Find Location", alertMessage: "Please fill out with valid location")
             } else {
                 
-                guard let placemark = placemarks!.first else {
-                    print("No placemark")
-                    return
-                }
-                
-                self.placemark = placemark
-                self.presentPostVerificationViewController()
+                self.getPlacemark(stringMap: self.locationTextField.text!, { (placemark: CLPlacemark?, error: Error?) in
+                    guard error == nil else {
+                        self.presentErrorAlertController("Couldn't Find Location", alertMessage: "Location not found")
+                        return
+                    }
+                    if placemark != nil {
+                        PostVerificationViewController.placemark = placemark!
+                        self.presentPostVerificationViewController()
+                    }
+                })
             }
         }
 
+    }
+    
+    func getPlacemark(stringMap: String, _ completion: @escaping (_ placemark: CLPlacemark?, _ error: Error?) -> Void) {
+        
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(stringMap) { (placemarks: [CLPlacemark]?, error: Error?) in
+            
+            guard error == nil else {
+                completion(nil, error!)
+                return
+            }
+            
+            guard let placemark = placemarks!.first else {
+                print("No placemark")
+                return
+            }
+            
+            completion(placemark, nil)
+        }
     }
     
     func presentPostVerificationViewController() -> Void {

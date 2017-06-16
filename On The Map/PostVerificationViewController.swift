@@ -10,18 +10,14 @@ import UIKit
 import MapKit
 
 class PostVerificationViewController: PostingViewController {
+    
+    static var placemark: CLPlacemark? = nil
 
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(placemark!)
-        self.mapView.showAnnotations([MKPlacemark(placemark: placemark!)], animated: true)
-        
-        
-        
-
-        // Do any additional setup after loading the view.
+        self.mapView.showAnnotations([MKPlacemark(placemark: PostVerificationViewController.placemark!)], animated: true)
     }
 
     override func didReceiveMemoryWarning() {

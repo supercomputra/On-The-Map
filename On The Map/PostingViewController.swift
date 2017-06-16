@@ -10,11 +10,7 @@ import UIKit
 import MapKit
 
 class PostingViewController: UIViewController {
-    
-//    var student = Student()
 
-    var placemark: CLPlacemark? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
