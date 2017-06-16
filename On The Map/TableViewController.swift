@@ -17,9 +17,6 @@ class TableViewController: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_listview-selected").withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "icon_listview-deselected") )
-        self.tabBarItem = customTabBarItem
-        
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         getStudents { (students: [Student]) in
             self.students = students

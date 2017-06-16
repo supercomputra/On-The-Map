@@ -18,9 +18,6 @@ class MapViewController: MainViewController {
         mapView.delegate = self
         super.viewDidLoad()
         
-        let customTabBarItem:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "icon_mapview-deselected")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "icon_mapview-selected"))
-        self.tabBarItem = customTabBarItem
-        
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         getAnnotations { (annotations: [MKPointAnnotation]) in
             performUIUpdatesOnMain {
