@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SafariServices
 
 class MapViewController: MainViewController {
     
@@ -36,11 +37,17 @@ extension MapViewController: MKMapViewDelegate {
         
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
+        pinView?.detailCalloutAccessoryView?.tintColor = Udacity.Color.green
+        
+        
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            pinView!.pinTintColor = Udacity.Color.magenta
+            
+            let button = UIButton(type: .detailDisclosure)
+            button.tintColor = Udacity.Color.green
+            pinView!.rightCalloutAccessoryView = button
         }
         else {
             pinView!.annotation = annotation
@@ -53,21 +60,11 @@ extension MapViewController: MKMapViewDelegate {
     // This delegate method is implemented to respond to taps. It opens the system browser
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
-                let url = URL(string: toOpen)
-                app.open(url!, completionHandler: nil)
-            }
-        }
-    }
-    
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        if control == annotationView.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            let url = URL(string: ((annotationView.annotation?.subtitle)!)!)
-            app.open(url!, options: [ : ], completionHandler: nil)
+        if control == view.rightCalloutAccessoryView {
+            if let annotationSubtitle = view.annotation?.subtitle! {
+                self.openURLInSafariViewController(stringURL: annotationSubtitle, target: self)
+            }
         }
     }
 

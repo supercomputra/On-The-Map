@@ -11,9 +11,7 @@ import UIKit
 class TableViewController: MainViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    let loginManager = UdacityClient()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +32,7 @@ extension TableViewController: UITableViewDelegate {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Student's Cell", for: indexPath)
         let student = students[indexPath.row]
         cell.textLabel?.text = (student.firstName!) + " " + (student.lastName!)
+        cell.detailTextLabel?.textColor = Udacity.Color.green
         
         if let mediaURL = student.mediaURL {
             let stringURL = String(describing: mediaURL)

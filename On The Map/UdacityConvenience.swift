@@ -20,7 +20,7 @@ enum RequestError: Error {
     case other
 }
 
-extension UdacityClient {
+extension Udacity {
     
     // TODO: Refactor postSession
     
@@ -34,8 +34,8 @@ extension UdacityClient {
         
         request.httpMethod = "POST"
         
-        request.addValue("application/json", forHTTPHeaderField: UdacityClient.Header.Accept)
-        request.addValue("application/json", forHTTPHeaderField: UdacityClient.Header.ContentType)
+        request.addValue("application/json", forHTTPHeaderField: Udacity.Header.Accept)
+        request.addValue("application/json", forHTTPHeaderField: Udacity.Header.ContentType)
         
         request.httpBody = body.data(using: String.Encoding.utf8)
         

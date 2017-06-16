@@ -27,7 +27,6 @@ class LogInViewController: UIViewController {
     var username: String?
     var password: String?
     var validAccount: Bool = false
-    let loginManager = UdacityClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +68,7 @@ class LogInViewController: UIViewController {
         
         presentActivityIndicator(start: true)
         
-        UdacityClient.postSession(username: username!, password: password!) { (session: Session?, error: RequestError?, errorDescription: String?) in
+        Udacity.postSession(username: username!, password: password!) { (session: Session?, error: RequestError?, errorDescription: String?) in
             if error == nil {
                 UserDefaults.standard.set(true, forKey: "isAuthenticated")
                 self.completeLogin()
@@ -178,4 +177,27 @@ private extension LogInViewController {
         
     }
     
+}
+
+// Displaying error message
+func displayErrorAlert(_ alertTitle: String?, alertMessage: String?, target: UIViewController) {
+    performUIUpdatesOnMain {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
+        alert.addAction(destructive)
+        
+        guard alertTitle != nil else {
+            if alertMessage != nil {
+                target.present(alert, animated: true, completion: nil)
+                return
+            } else {
+                alert.title = "Error"
+                alert.message = "Something Went Wrong"
+                target.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        target.present(alert, animated: true, completion: nil)
+    }
 }

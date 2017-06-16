@@ -157,9 +157,9 @@ class ParseClient: NSObject {
     }
     
     // MARK: Shared Instance
-    class func sharedInstance() -> UdacityClient {
+    class func sharedInstance() -> Udacity {
         struct Singleton {
-            static var sharedInstance = UdacityClient()
+            static var sharedInstance = Udacity()
         }
         return Singleton.sharedInstance
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UdacityClient: NSObject {
+class Udacity: NSObject {
     
     // Shared session
     var session = URLSession.shared
@@ -154,9 +154,9 @@ class UdacityClient: NSObject {
     private func udacityURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
-        components.scheme = UdacityClient.Component.ApiScheme
-        components.host = UdacityClient.Component.ApiHost
-        components.path = UdacityClient.Component.ApiPath + (withPathExtension ?? "")
+        components.scheme = Udacity.Component.ApiScheme
+        components.host = Udacity.Component.ApiHost
+        components.path = Udacity.Component.ApiPath + (withPathExtension ?? "")
         components.queryItems = [URLQueryItem]()
         
         for (key, value) in parameters {
@@ -169,9 +169,9 @@ class UdacityClient: NSObject {
     
     
     // MARK: Shared Instance
-    class func sharedInstance() -> UdacityClient {
+    class func sharedInstance() -> Udacity {
         struct Singleton {
-            static var sharedInstance = UdacityClient()
+            static var sharedInstance = Udacity()
         }
         return Singleton.sharedInstance
     }

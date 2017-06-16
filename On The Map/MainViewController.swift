@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 import MapKit
+import SafariServices
+
+
 
 class MainViewController: UIViewController {
     
@@ -41,8 +44,7 @@ class MainViewController: UIViewController {
         let logOutBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
         
         let font = UIFont.boldSystemFont(ofSize: 15.0)
-        let color = UIColor(red: 21/255, green: 164/255, blue: 222/255, alpha: 1.0)
-        logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: color], for:UIControlState.normal)
+        logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: Udacity.Color.blue], for:UIControlState.normal)
         
         logOutBarButton = logOutBarButtonItem
     }
@@ -54,7 +56,7 @@ class MainViewController: UIViewController {
     func logOut() {
         dismiss(animated: true) {
             print("View get dismissed")
-            UdacityClient.deleteSession()
+            Udacity.deleteSession()
             UserDefaults.standard.set(false, forKey: "isAuthenticated")
         }
     }
@@ -93,6 +95,25 @@ class MainViewController: UIViewController {
                 annotations.append(annotation)
             }
             completion(annotations)
+        }
+    }
+    
+    func openURLInSafariViewController(stringURL: String, target: UIViewController) {
+        
+        guard let url = URL(string: stringURL) else {
+            return
+        }
+        
+        if url.scheme != nil {
+            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            target.present(safariViewController, animated: true, completion: nil)
+        } else {
+            if let schemedURL = URL(string: "http://" + stringURL) {
+                let safariViewController = SFSafariViewController(url: schemedURL, entersReaderIfAvailable: true)
+                target.present(safariViewController, animated: true, completion: nil)
+            } else {
+                displayErrorAlert("Sorry", alertMessage: "The page you try to visit has no valid URL", target: target)
+            }
         }
     }
 
