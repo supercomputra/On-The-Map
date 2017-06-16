@@ -34,12 +34,12 @@ extension UdacityClient {
         
         request.httpMethod = "POST"
         
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: UdacityClient.Header.Accept)
+        request.addValue("application/json", forHTTPHeaderField: UdacityClient.Header.ContentType)
         
         request.httpBody = body.data(using: String.Encoding.utf8)
         
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             let range = Range(uncheckedBounds: (5, data!.count))
             let decryptedData = data?.subdata(in: range)

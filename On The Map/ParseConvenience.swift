@@ -18,8 +18,8 @@ extension ParseClient {
         
         var request = URLRequest(url: getStudentLocationURL)
         
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.ParameterKeys.ApplicationID)
+        request.addValue(ParseClient.Constants.ApiKey, forHTTPHeaderField: ParseClient.ParameterKeys.ApiKey)
         
         let session = URLSession.shared
         
@@ -56,25 +56,34 @@ extension ParseClient {
                     return
                 }
                 
-                var students = [Student]()
+                var students: [Student] = []
                 
                 for result in results {
                     
                     let location = Location(dictionary: result)
                     
-                    
-                    guard location.coordinate != nil else {
-                        break
+                    if location.coordinate != nil {
+                        
+                        let student = Student(dictionary: result, location: location)
+                        
+                        let firsNameHasEmptyString = student.firstName == nil || student.firstName == ""
+                        
+                        let lastNameHasEmptyString = student.lastName == nil || student.lastName == ""
+
+                        if !firsNameHasEmptyString || !lastNameHasEmptyString {
+                            
+                            students.append(student)
+                            
+                        } else {
+                            
+                            // Handle no name student error here
+                        }
+                        
+                    } else {
+                        
+                        // Handle no location student error here
+                        
                     }
-                    
-                    let student = Student(dictionary: result, location: location)
-                    
-                    guard student.firstName != nil, student.lastName != nil else {
-                        break
-                    }
-                    
-                    students.append(student)
-                    
                 }
                 
                 completion(students, nil, nil)

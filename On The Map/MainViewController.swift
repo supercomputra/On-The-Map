@@ -41,8 +41,11 @@ class MainViewController: UIViewController {
     }
     
     func getAnnotations(_ completion: @escaping (_ completion: [MKPointAnnotation])-> Void) {
+        
         var annotations = [MKPointAnnotation]()
+        
         getStudents { (students: [Student]) in
+            
             for student in students {
                 let annotation = MKPointAnnotation()
                 if let coordinate = student.location?.coordinate {
@@ -51,7 +54,13 @@ class MainViewController: UIViewController {
                     annotation.coordinate = CLLocationCoordinate2DMake(0.0, 0.0)
                 }
                 annotation.title = "\(student.firstName ?? "") \(student.lastName ?? "")"
-                annotation.subtitle = String(describing: student.mediaURL)
+                
+                if let mediaURL = student.mediaURL {
+                    let stringURL = String(describing: mediaURL)
+                    annotation.subtitle = stringURL
+                } else {
+                    annotation.subtitle = "Unknown Media URL"
+                }
                 
                 annotations.append(annotation)
             }
