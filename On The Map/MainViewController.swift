@@ -89,7 +89,7 @@ class MainViewController: UIViewController {
                     let stringURL = String(describing: mediaURL)
                     annotation.subtitle = stringURL
                 } else {
-                    annotation.subtitle = "Unknown Media URL"
+                    annotation.subtitle = "https://zulwiyozaputra.com"
                 }
                 
                 annotations.append(annotation)
@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func openURLInSafariViewController(stringURL: String, target: UIViewController) {
+    func openURLInSafariViewController(stringURL: String) {
         
         guard let url = URL(string: stringURL) else {
             return
@@ -106,13 +106,13 @@ class MainViewController: UIViewController {
         
         if url.scheme != nil {
             let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
-            target.present(safariViewController, animated: true, completion: nil)
+            self.present(safariViewController, animated: true, completion: nil)
         } else {
             if let schemedURL = URL(string: "http://" + stringURL) {
                 let safariViewController = SFSafariViewController(url: schemedURL, entersReaderIfAvailable: true)
-                target.present(safariViewController, animated: true, completion: nil)
+                self.present(safariViewController, animated: true, completion: nil)
             } else {
-                displayErrorAlert("Sorry", alertMessage: "The page you try to visit has no valid URL", target: target)
+                displayErrorAlert("Sorry", alertMessage: "The page you try to visit has no valid URL")
             }
         }
     }

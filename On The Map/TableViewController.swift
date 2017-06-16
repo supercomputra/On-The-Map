@@ -43,6 +43,15 @@ extension TableViewController: UITableViewDelegate {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = students[indexPath.row]
+        if let mediaURL = student.mediaURL {
+            let stringURL = String(describing: mediaURL)
+            self.openURLInSafariViewController(stringURL: stringURL)
+        }
+        
+    }
 }
 
 // Table View Data Source

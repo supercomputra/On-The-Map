@@ -30,7 +30,6 @@ class MapViewController: MainViewController {
 
 extension MapViewController: MKMapViewDelegate {
     // MARK: - MKMapViewDelegate
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -38,7 +37,6 @@ extension MapViewController: MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         pinView?.detailCalloutAccessoryView?.tintColor = Udacity.Color.green
-        
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
@@ -63,7 +61,7 @@ extension MapViewController: MKMapViewDelegate {
         
         if control == view.rightCalloutAccessoryView {
             if let annotationSubtitle = view.annotation?.subtitle! {
-                self.openURLInSafariViewController(stringURL: annotationSubtitle, target: self)
+                self.openURLInSafariViewController(stringURL: annotationSubtitle)
             }
         }
     }
