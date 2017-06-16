@@ -38,9 +38,13 @@ class MainViewController: UIViewController {
         self.tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.navigationBar.isTranslucent = false
         
-        let barButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
-        barButtonItem.tintColor = UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
-        logOutBarButton = barButtonItem
+        let logOutBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
+        
+        let font = UIFont.boldSystemFont(ofSize: 15.0)
+        let color = UIColor(red: 21/255, green: 164/255, blue: 222/255, alpha: 1.0)
+        logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: color], for:UIControlState.normal)
+        
+        logOutBarButton = logOutBarButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
