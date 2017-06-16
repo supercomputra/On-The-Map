@@ -15,8 +15,6 @@ import SafariServices
 
 class MainViewController: UIViewController {
     
-    var students = [Student]()
-    
     var logOutBarButton = UIBarButtonItem()
     
     override func viewDidLoad() {
@@ -71,27 +69,19 @@ class MainViewController: UIViewController {
     }
     
     func add() {
-        print("Add button tapped")
+        presentPostingViewController()
     }
     
     func refresh() {
         print("Refresh button tapped")
-    }
-    
-    func getStudents(_ completion: @escaping (_ students: [Student]) -> Void) {
-        ParseClient.getStudentLocation { (students: [Student]?, error: RequestError?, errorDescription: String?) in
-            guard students != nil else {
-                return
-            }
-            completion(students!)
-        }
+        DataSource.getStudents()
     }
     
     func getAnnotations(_ completion: @escaping (_ completion: [MKPointAnnotation])-> Void) {
         
         var annotations = [MKPointAnnotation]()
         
-        getStudents { (students: [Student]) in
+        DataSource.getStudents { (students: [Student]) in
             
             for student in students {
                 let annotation = MKPointAnnotation()
@@ -115,9 +105,15 @@ class MainViewController: UIViewController {
         }
     }
     
+    // Presenting next view
+    func presentPostingViewController() -> Void {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let addViewController = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        self.navigationController?.pushViewController(addViewController, animated: true)
+    }
     
     
-    func openURLInSafariViewController(stringURL: String) {
+    func presentURLInSafariViewController(stringURL: String) {
         
         guard let url = URL(string: stringURL) else {
             return
@@ -131,7 +127,7 @@ class MainViewController: UIViewController {
                 let safariViewController = SFSafariViewController(url: schemedURL, entersReaderIfAvailable: true)
                 self.present(safariViewController, animated: true, completion: nil)
             } else {
-                displayErrorAlert("Sorry", alertMessage: "The page you try to visit has no valid URL")
+                presentErrorAlertController("Sorry", alertMessage: "The page you try to visit has no valid URL")
             }
         }
     }

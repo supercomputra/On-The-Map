@@ -1,5 +1,5 @@
 //
-//  MainTabBarController.swift
+//  PostVerificationViewController.swift
 //  On The Map
 //
 //  Created by Zulwiyoza Putra on 6/15/17.
@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import MapKit
 
-class MainTabBarController: UITabBarController {
+class PostVerificationViewController: PostingViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(placemark!)
+        self.mapView.showAnnotations([MKPlacemark(placemark: placemark!)], animated: true)
         
-        let mapViewTabBar:UITabBarItem = UITabBarItem(title: nil, image: UIImage(named: "icon_mapview-deselected")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "icon_mapview-selected"))
         
-        let listViewTabBar:UITabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icon_listview-selected").withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: #imageLiteral(resourceName: "icon_listview-deselected"))
         
-        self.tabBar.items![0] = mapViewTabBar
-        self.tabBar.items![1] = listViewTabBar
 
         // Do any additional setup after loading the view.
     }

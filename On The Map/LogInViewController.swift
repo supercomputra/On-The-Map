@@ -180,7 +180,7 @@ private extension LogInViewController {
 }
 
 extension UIViewController {
-    func displayErrorAlert(_ alertTitle: String?, alertMessage: String?) {
+    func presentErrorAlertController(_ alertTitle: String?, alertMessage: String?) {
         performUIUpdatesOnMain {
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
             let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)

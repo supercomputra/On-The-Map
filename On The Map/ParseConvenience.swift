@@ -86,6 +86,8 @@ extension ParseClient {
                     }
                 }
                 
+                DataSource.students = students
+                
                 completion(students, nil, nil)
                 
             } else {

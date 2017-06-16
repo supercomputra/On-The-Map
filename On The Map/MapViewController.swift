@@ -26,6 +26,11 @@ class MapViewController: MainViewController {
             }
         }
     }
+    
+    override func refresh() {
+        super.refresh()
+        mapView.reloadInputViews()
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -61,7 +66,7 @@ extension MapViewController: MKMapViewDelegate {
         
         if control == view.rightCalloutAccessoryView {
             if let annotationSubtitle = view.annotation?.subtitle! {
-                self.openURLInSafariViewController(stringURL: annotationSubtitle)
+                self.presentURLInSafariViewController(stringURL: annotationSubtitle)
             }
         }
     }

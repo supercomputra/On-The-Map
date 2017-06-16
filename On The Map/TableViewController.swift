@@ -16,12 +16,20 @@ class TableViewController: MainViewController {
         super.viewDidLoad()
         
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
-        getStudents { (students: [Student]) in
-            self.students = students
-            performUIUpdatesOnMain {
-                self.tableView.reloadData()
+        if DataSource.students.count == 0 {
+            DataSource.getStudents { (students: [Student]) in
+                DataSource.students = students
+                performUIUpdatesOnMain {
+                    self.tableView.reloadData()
+                }
             }
         }
+        
+    }
+    
+    override func refresh() {
+        super.refresh()
+        tableView.reloadData()
     }
 
 }
@@ -30,7 +38,7 @@ class TableViewController: MainViewController {
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Student's Cell", for: indexPath)
-        let student = students[indexPath.row]
+        let student = DataSource.students[indexPath.row]
         cell.textLabel?.text = (student.firstName!) + " " + (student.lastName!)
         cell.detailTextLabel?.textColor = Udacity.Color.green
         
@@ -45,10 +53,10 @@ extension TableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let student = students[indexPath.row]
+        let student = DataSource.students[indexPath.row]
         if let mediaURL = student.mediaURL {
             let stringURL = String(describing: mediaURL)
-            self.openURLInSafariViewController(stringURL: stringURL)
+            self.presentURLInSafariViewController(stringURL: stringURL)
         }
         
     }
@@ -57,6 +65,6 @@ extension TableViewController: UITableViewDelegate {
 // Table View Data Source
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.students.count
+        return DataSource.students.count
     }
 }

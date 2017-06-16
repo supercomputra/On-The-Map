@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="2182" y="112"/>
         </scene>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="QMg-nV-ec8">
             <objects>
-                <viewController id="EpO-3v-SKE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostViewController" hidesBottomBarWhenPushed="YES" id="EpO-3v-SKE" customClass="PostViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mwF-KQ-xrK"/>
                         <viewControllerLayoutGuide type="bottom" id="Z6a-vk-0VK"/>
@@ -249,7 +249,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="URL"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ2-aa-APf">
                                                 <rect key="frame" x="0.0" y="100" width="311" height="40"/>
@@ -261,9 +261,6 @@
                                                 <state key="normal" title="FIND LOCATION">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="UR0-j1-N5N" kind="show" id="oqJ-Tx-caX"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -284,15 +281,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BhM-Qa-Gxv"/>
+                    <connections>
+                        <outlet property="findLocatinButton" destination="jJ2-aa-APf" id="smn-of-0zU"/>
+                        <outlet property="locationTextField" destination="3Ty-Qs-Gi8" id="YxH-2k-bkq"/>
+                        <outlet property="mediaURLTextField" destination="nCv-9h-SBS" id="fzA-Lq-BeY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxC-K2-Dnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3060" y="1492.8035982008996"/>
         </scene>
-        <!--View Controller-->
+        <!--Post Verification View Controller-->
         <scene sceneID="dlm-kE-r6H">
             <objects>
-                <viewController id="UR0-j1-N5N" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostVerificationViewController" hidesBottomBarWhenPushed="YES" id="UR0-j1-N5N" customClass="PostVerificationViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="st6-hY-DUH"/>
                         <viewControllerLayoutGuide type="bottom" id="pWa-Lw-60Y"/>
@@ -302,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Gtn-VG-Re8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDo-50-ieR">
                                 <rect key="frame" x="32" y="595" width="311" height="40"/>
@@ -323,14 +325,17 @@
                             <constraint firstItem="pWa-Lw-60Y" firstAttribute="top" secondItem="fDo-50-ieR" secondAttribute="bottom" constant="32" id="YDt-le-A0C"/>
                             <constraint firstAttribute="trailing" secondItem="Gtn-VG-Re8" secondAttribute="trailing" id="acH-rY-LVg"/>
                             <constraint firstItem="Gtn-VG-Re8" firstAttribute="leading" secondItem="H2H-OT-l73" secondAttribute="leading" id="qLK-nz-2Uo"/>
-                            <constraint firstItem="Gtn-VG-Re8" firstAttribute="top" secondItem="st6-hY-DUH" secondAttribute="bottom" id="r46-LV-hz1"/>
+                            <constraint firstItem="Gtn-VG-Re8" firstAttribute="top" secondItem="H2H-OT-l73" secondAttribute="top" id="slf-Tg-YTq"/>
                             <constraint firstItem="fDo-50-ieR" firstAttribute="leading" secondItem="H2H-OT-l73" secondAttribute="leading" constant="32" id="vsa-Wt-1Gv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Gtn-VG-Re8" id="N2L-xr-XIc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaJ-sP-Ttp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3830" y="1493"/>
+            <point key="canvasLocation" x="3829.5999999999999" y="1492.8035982008996"/>
         </scene>
         <!--Item-->
         <scene sceneID="RrG-HZ-kJi">
