@@ -9,13 +9,21 @@
 import Foundation
 
 extension ParseClient {
+    
+    // refactor getStudentLocation
+    
     static func getStudentLocation(completion: @escaping (_ students: [Student]?, _ error: RequestError?, _ errorDescription: String?) -> Void) {
-        let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        
+        let getStudentLocationURL = URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!
+        
+        var request = URLRequest(url: getStudentLocationURL)
+        
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
         let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            // Was there any error?
+        
+        let task = session.dataTask(with: request) { data, response, error in
             
             guard (error == nil) else {
                 completion(nil, .failedRequest, nil)
@@ -41,6 +49,7 @@ extension ParseClient {
             }
             
             let isStatusCode2XX = (statusCode<300) && (199<statusCode)
+            
             if isStatusCode2XX {
                 
                 guard let results = parsedResult["results"] as? [[String: AnyObject]] else {
@@ -53,10 +62,18 @@ extension ParseClient {
                     
                     let location = Location(dictionary: result)
                     
-                    if location.coordinate != nil {
-                        let student = Student(dictionary: result, location: location)
-                        students.append(student)
+                    
+                    guard location.coordinate != nil else {
+                        break
                     }
+                    
+                    let student = Student(dictionary: result, location: location)
+                    
+                    guard student.firstName != nil, student.lastName != nil else {
+                        break
+                    }
+                    
+                    students.append(student)
                     
                 }
                 
@@ -71,7 +88,7 @@ extension ParseClient {
                 completion(nil, .other, errorMessage)
             }
             
-                    }
+        }
         task.resume()
     }
 }

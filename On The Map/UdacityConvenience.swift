@@ -22,16 +22,21 @@ enum RequestError: Error {
 
 extension UdacityClient {
     
+    // TODO: Refactor postSession
+    
     static func postSession(username: String, password: String, completion: @escaping ( _ session: Session?,_ error: RequestError?, _ errorDescription: String?) -> Void) {
         
-        let sessionURL = URL(string: "https://www.udacity.com/api/session")!
+        let postSessionURL = URL(string: "https://www.udacity.com/api/session")!
         
         let body = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
         
-        let request = NSMutableURLRequest(url: sessionURL)
+        var request = URLRequest(url: postSessionURL)
+        
         request.httpMethod = "POST"
+        
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
         request.httpBody = body.data(using: String.Encoding.utf8)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
@@ -98,6 +103,9 @@ extension UdacityClient {
         task.resume()
     }
     
+    
+    // TODO: Refactor deleteSession
+
     static func deleteSession() -> Void {
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
