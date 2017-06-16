@@ -29,10 +29,10 @@ extension Parse {
 //    }
     
     static func getStudentLocation(uniqueKey: String, completion: @escaping (_ student: Student?, _ error: NSError?) -> Void) {
-        let whereValue = ["uniqueKey": uniqueKey] as AnyObject
-        let parameters = ["where": whereValue]
         
-        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
+        let dictionary = ["where": ["uniqueKey":"\(uniqueKey)"]] as [String: AnyObject]
+        
+        Parse.taskForGETMethod(parameters: nil, queryDictionary: dictionary) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
@@ -64,7 +64,7 @@ extension Parse {
         
         let parameters = ["limit": "200"] as [String: AnyObject]
         
-        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
+        Parse.taskForGETMethod(parameters: parameters, queryDictionary: nil) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
