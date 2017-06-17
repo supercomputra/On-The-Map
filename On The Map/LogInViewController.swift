@@ -33,7 +33,7 @@ class LogInViewController: UIViewController {
         
         if let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as? String {
             print("logging in with \(uniqueKey)")
-            completeLogin()
+            completeLogin(withLogin: false)
         }
         
         appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -67,7 +67,7 @@ class LogInViewController: UIViewController {
         
         Udacity.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?) in
             if error == nil {
-                self.completeLogin()
+                self.completeLogin(withLogin: true)
             } else {
                 if errorDescription == nil {
                     self.displayError("Error \(error.debugDescription) occurs")
@@ -81,18 +81,28 @@ class LogInViewController: UIViewController {
     // Get student data
     
     // Complete Login
-    private func completeLogin() -> Void {
+    private func completeLogin(withLogin: Bool) -> Void {
         performUIUpdatesOnMain {
-            self.presentActivityIndicator(start: false)
-            self.presentNextView()
+            if withLogin {
+                self.presentActivityIndicator(start: false)
+                self.presentNextView(animate: true)
+            } else {
+                self.presentNextView(animate: false)
+            }
+            
         }
     }
     
     // Presenting next view
-    func presentNextView() -> Void {
+    func presentNextView(animate: Bool) -> Void {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let homeTabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! UITabBarController
-        self.present(homeTabBarController, animated: true, completion: nil)
+        if animate {
+            self.present(homeTabBarController, animated: true, completion: nil)
+        } else {
+            self.present(homeTabBarController, animated: false, completion: nil)
+        }
+        
     }
     
     // Presenting UI alert view
@@ -143,7 +153,7 @@ extension LogInViewController: FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         print("logged in")
         performUIUpdatesOnMain {
-            self.presentNextView()
+            self.presentNextView(animate: true)
         }
     }
     

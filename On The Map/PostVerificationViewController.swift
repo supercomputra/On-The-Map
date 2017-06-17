@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PostVerificationViewController: PostingViewController {
+class PostVerificationViewController: UIViewController {
     
     @IBOutlet weak var finishButton: UIButton!
     

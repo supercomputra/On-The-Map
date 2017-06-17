@@ -15,7 +15,9 @@ import SafariServices
 
 class MainViewController: UIViewController {
     
-    var logOutBarButton = UIBarButtonItem()
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    let backgroundView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,8 @@ class MainViewController: UIViewController {
         let logOutBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
         let font = UIFont.boldSystemFont(ofSize: 15.0)
         logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: Udacity.Color.blue], for:UIControlState.normal)
-        logOutBarButton = logOutBarButtonItem
+        
+        self.navigationItem.setLeftBarButton(logOutBarButtonItem, animated: false)
         
         let addBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_addpin"), style: .plain, target: self, action: #selector(add))
         addBarButtonItem.tintColor = Udacity.Color.blue

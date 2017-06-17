@@ -17,7 +17,6 @@ class TableViewController: MainViewController {
         
         self.navigationController?.hidesBarsOnSwipe = true
         
-        self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         if DataSource.students.count == 0 {
             DataSource.getStudents { (students: [Student]) in
                 DataSource.students = students

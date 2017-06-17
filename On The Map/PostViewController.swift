@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PostViewController: PostingViewController {
+class PostViewController: UIViewController {
     
     
 

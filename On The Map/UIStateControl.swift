@@ -7,4 +7,31 @@
 //
 
 import Foundation
+import UIKit
 
+enum State {
+    case normal
+    case fetchingAnnotation
+}
+
+extension UIViewController {
+    
+    func state(state: State, activityIndicator: UIActivityIndicatorView, background: UIView) {
+        switch state {
+        case .fetchingAnnotation:
+            self.view.isUserInteractionEnabled = false
+            let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+            background.frame = frame
+            background.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.66)
+            self.view.addSubview(background)
+            self.activityIndicator(activityIndicator: activityIndicator, animate: true, on: background)
+            
+
+        default:
+            background.removeFromSuperview()
+            self.view.isUserInteractionEnabled = true
+            self.activityIndicator(activityIndicator: activityIndicator, animate: false, on: background)
+            
+        }
+    }
+}

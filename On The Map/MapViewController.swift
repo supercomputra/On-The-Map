@@ -19,10 +19,14 @@ class MapViewController: MainViewController {
         mapView.delegate = self
         super.viewDidLoad()
         
-        self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
+        self.state(state: .fetchingAnnotation, activityIndicator: activityIndicator, background: backgroundView)
+
         getAnnotations { (annotations: [MKPointAnnotation]) in
             performUIUpdatesOnMain {
                 self.mapView.addAnnotations(annotations)
+                performUIUpdatesOnMain {
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                }
             }
         }
     }

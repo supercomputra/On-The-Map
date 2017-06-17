@@ -17,7 +17,6 @@
 		6E7232751E54AD9200D754AB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232741E54AD9200D754AB /* Parse.swift */; };
 		6E7232771E54AE6A00D754AB /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232761E54AE6A00D754AB /* ParseConstants.swift */; };
 		6E7ABC6E1EF3AE3300CE1651 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC6D1EF3AE3300CE1651 /* PostViewController.swift */; };
-		6E7ABC701EF3AFDF00CE1651 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC6F1EF3AFDF00CE1651 /* PostingViewController.swift */; };
 		6E7ABC721EF3B6C400CE1651 /* PostVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC711EF3B6C400CE1651 /* PostVerificationViewController.swift */; };
 		6E7ABC741EF3BE0600CE1651 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7ABC731EF3BE0600CE1651 /* DataSource.swift */; };
 		6E862EE81E2B56BE00D1067D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EE71E2B56BE00D1067D /* AppDelegate.swift */; };
@@ -37,6 +36,7 @@
 		6ED70F451E2CB913001E8620 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */; };
 		6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */; };
 		6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */; };
+		6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */; };
 		928DBCCEE3274DB60AD7B0B8 /* Pods_On_The_MapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */; };
 		C8694540A53D3C1F44898E23 /* Pods_On_The_MapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */; };
 		EDAD913E2C8D475C3142D95D /* Pods_On_The_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0C3A9F91956C347A4B201C /* Pods_On_The_Map.framework */; };
@@ -73,7 +73,6 @@
 		6E7232741E54AD9200D754AB /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parse.swift; path = "On The Map/Parse.swift"; sourceTree = "<group>"; };
 		6E7232761E54AE6A00D754AB /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = "On The Map/ParseConstants.swift"; sourceTree = "<group>"; };
 		6E7ABC6D1EF3AE3300CE1651 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		6E7ABC6F1EF3AFDF00CE1651 /* PostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		6E7ABC711EF3B6C400CE1651 /* PostVerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVerificationViewController.swift; sourceTree = "<group>"; };
 		6E7ABC731EF3BE0600CE1651 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = "On The Map/DataSource.swift"; sourceTree = "<group>"; };
 		6E862EE41E2B56BE00D1067D /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +98,7 @@
 		6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewManager.swift; sourceTree = "<group>"; };
 		852CCE917ADE5F075E2BF053 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CCDDD553B1BF25C4AFF58 /* Pods-On The MapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B0106C94A6F379DAFDFACFA0 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +173,6 @@
 				6E6424401EF27A0600ED473B /* MainViewController.swift */,
 				6E862F1A1E2B613500D1067D /* MapViewController.swift */,
 				6E862F181E2B60E300D1067D /* TableViewController.swift */,
-				6E7ABC6F1EF3AFDF00CE1651 /* PostingViewController.swift */,
 				6E7ABC6D1EF3AE3300CE1651 /* PostViewController.swift */,
 				6E7ABC711EF3B6C400CE1651 /* PostVerificationViewController.swift */,
 			);
@@ -194,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				6E862F1E1E2B68B700D1067D /* UIStateControl.swift */,
+				6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -604,9 +604,9 @@
 				6E64243F1EF245D200ED473B /* Location.swift in Sources */,
 				6E862F191E2B60E300D1067D /* TableViewController.swift in Sources */,
 				6E862EF01E2B56BE00D1067D /* On_The_Map.xcdatamodeld in Sources */,
+				6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */,
 				6E657D2D1E55960B000CA82E /* ParseConvenience.swift in Sources */,
 				6E862EE81E2B56BE00D1067D /* AppDelegate.swift in Sources */,
-				6E7ABC701EF3AFDF00CE1651 /* PostingViewController.swift in Sources */,
 				6EA3DBB21E54881B005FD5BF /* Udacity.swift in Sources */,
 				6E7232751E54AD9200D754AB /* Parse.swift in Sources */,
 				6E7232771E54AE6A00D754AB /* ParseConstants.swift in Sources */,
