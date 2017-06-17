@@ -23,6 +23,10 @@ class LogInViewController: UIViewController {
     
     // Variables
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    
+    let backgroundView = UIView()
+    
     var appDelegate: AppDelegate!
     var username: String?
     var password: String?
@@ -54,6 +58,9 @@ class LogInViewController: UIViewController {
     // Actions
 
     @IBAction func logInButton(_ sender: Any) {
+        
+        self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
+        
         if usernameTexField.text!.isEmpty || passwordTextField.text!.isEmpty {
             showAlert(alertTitle: "", alertMessage: "Username and Password you entered are wrong")
         }
@@ -63,15 +70,17 @@ class LogInViewController: UIViewController {
         username = usernameTexField.text!
         password = passwordTextField.text!
         
-        presentActivityIndicator(start: true)
+        self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
         
         Udacity.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?) in
             if error == nil {
                 self.completeLogin(withLogin: true)
             } else {
                 if errorDescription == nil {
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                     self.displayError("Error \(error.debugDescription) occurs")
                 } else {
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                     self.displayError(errorDescription!)
                 }
             }
@@ -84,7 +93,7 @@ class LogInViewController: UIViewController {
     private func completeLogin(withLogin: Bool) -> Void {
         performUIUpdatesOnMain {
             if withLogin {
-                self.presentActivityIndicator(start: false)
+                self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                 self.presentNextView(animate: true)
             } else {
                 self.presentNextView(animate: false)
@@ -113,29 +122,10 @@ class LogInViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // Presenting activity Indicator
-    private func presentActivityIndicator(start: Bool) -> Void {
-        let alert = UIAlertController(title: "Loading...", message: "", preferredStyle: UIAlertControllerStyle.alert)
-        let ok = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
-        alert.addAction(ok)
-        
-        let activityIndicatorView = UIActivityIndicatorView(frame: alert.view.bounds)
-        activityIndicatorView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        activityIndicatorView.activityIndicatorViewStyle = .whiteLarge
-        activityIndicatorView.color = UIColor.darkGray
-        alert.view.addSubview(activityIndicatorView)
-        activityIndicatorView.isUserInteractionEnabled = false
-        if start == true {
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
     
     // Displaying error message
     func displayError(_ error: String) {
         performUIUpdatesOnMain {
-            self.presentActivityIndicator(start: false)
             self.showAlert(alertTitle: "Error", alertMessage: error)
         }
     }

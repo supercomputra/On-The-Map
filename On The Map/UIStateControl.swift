@@ -11,14 +11,14 @@ import UIKit
 
 enum State {
     case normal
-    case fetchingAnnotation
+    case loading
 }
 
 extension UIViewController {
     
     func state(state: State, activityIndicator: UIActivityIndicatorView, background: UIView) {
         switch state {
-        case .fetchingAnnotation:
+        case .loading:
             self.view.isUserInteractionEnabled = false
             let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
             background.frame = frame

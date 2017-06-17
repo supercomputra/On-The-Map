@@ -15,7 +15,7 @@ import SafariServices
 
 class MainViewController: UIViewController {
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
     
     let backgroundView = UIView()
     

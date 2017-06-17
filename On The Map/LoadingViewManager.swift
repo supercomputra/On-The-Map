@@ -14,7 +14,13 @@ extension UIViewController {
     func activityIndicator(activityIndicator: UIActivityIndicatorView, animate: Bool, on view: UIView) {
         if animate {
             let centerX = self.view.bounds.size.width/2
-            let centerY = self.view.bounds.size.height/2
+            var centerY = CGFloat()
+            if self.navigationController == nil {
+                centerY = self.view.bounds.size.height/2
+            } else {
+                centerY = self.view.bounds.size.height/2 - (self.navigationController?.navigationBar.bounds.height)!
+            }
+            
             activityIndicator.center = CGPoint(x: centerX, y: centerY)
             activityIndicator.startAnimating()
             activityIndicator.hidesWhenStopped = true
