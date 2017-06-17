@@ -21,6 +21,8 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         
         mediaURLTextField.delegate = self
+        let target = PostVerificationViewController()
+        target.dataDelegate = self
         
         let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
         backBarButtonItem.tintColor = Udacity.Color.blue
@@ -44,6 +46,11 @@ class PostViewController: UIViewController {
         // Check if location textfield is empty or not.
         if (locationTextField.text?.isEmpty)! {
             presentErrorAlertController("Couldn't Find Location", alertMessage: "Please fill the text fields")
+            return
+        }
+        
+        if (mediaURLTextField.text?.isEmpty)! || mediaURLTextField.text == "http://" || mediaURLTextField.text == "https://" {
+            presentErrorAlertController("Couldn't Find URL", alertMessage: "Please fill the text fields")
             return
         }
         
@@ -94,8 +101,8 @@ class PostViewController: UIViewController {
     
     func presentPostVerificationViewController() -> Void {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let addViewController = storyBoard.instantiateViewController(withIdentifier: "PostVerificationViewController") as! PostVerificationViewController
-        self.navigationController?.pushViewController(addViewController, animated: true)
+        let postVerificationViewController = storyBoard.instantiateViewController(withIdentifier: "PostVerificationViewController") as! PostVerificationViewController
+        self.navigationController?.pushViewController(postVerificationViewController, animated: true)
     }
 
 }
@@ -107,5 +114,17 @@ extension PostViewController: UITextFieldDelegate {
                 textField.text = "http://"
             }
         }
+    }
+}
+
+extension PostViewController: DataProtocol {
+    func mediaURLDelegate() -> URL {
+        let stringURL = mediaURLTextField.text
+        if let mediaURL = URL(string: stringURL!) {
+            return mediaURL
+        } else {
+            return URL(string: "https://zulwiyozaputra.com")!
+        }
+        
     }
 }
