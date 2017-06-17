@@ -21,19 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="4WV-G4-To8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone" translatesAutoresizingMaskIntoConstraints="NO" id="Nez-8E-QB5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="4WV-G4-To8" secondAttribute="trailing" id="Icr-iz-htG"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4WV-G4-To8" secondAttribute="bottom" id="d9d-0o-3IZ"/>
-                            <constraint firstItem="4WV-G4-To8" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dhL-i6-8Kd"/>
-                            <constraint firstItem="4WV-G4-To8" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nqt-Hi-ufg"/>
+                            <constraint firstItem="Nez-8E-QB5" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3Rw-bS-w8r"/>
+                            <constraint firstItem="Nez-8E-QB5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="4Jn-6c-Xas"/>
+                            <constraint firstAttribute="trailing" secondItem="Nez-8E-QB5" secondAttribute="trailing" id="HqG-7g-XQc"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nez-8E-QB5" secondAttribute="bottom" id="ahe-2E-gaO"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -41,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchscreen" width="414" height="700"/>
+        <image name="iphone" width="414" height="700"/>
     </resources>
 </document>
