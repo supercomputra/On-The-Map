@@ -64,14 +64,14 @@ class LogInViewController: UIViewController {
             self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
             Udacity.postSession(username: email!, password: password!) { (error: RequestError?, errorDescription: String?) in
                 if error == nil {
-                    performUIUpdatesOnMain {
+                    self.executeOnMain {
                         self.emailTextField.text = ""
                         self.passwordTextField.text = ""
                     }
                     self.completeLogin(withLogin: true)
                 } else {
                     if errorDescription == nil {
-                        performUIUpdatesOnMain {
+                        self.executeOnMain {
                             self.emailTextField.text = ""
                             self.passwordTextField.text = ""
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
@@ -79,7 +79,7 @@ class LogInViewController: UIViewController {
                         }
                         
                     } else {
-                        performUIUpdatesOnMain {
+                        self.executeOnMain {
                             self.emailTextField.text = ""
                             self.passwordTextField.text = ""
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
@@ -104,7 +104,7 @@ class LogInViewController: UIViewController {
     
     // Complete Login
     private func completeLogin(withLogin: Bool) -> Void {
-        performUIUpdatesOnMain {
+        executeOnMain {
             if withLogin {
                 self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                 self.presentNextView(animate: true)
@@ -128,7 +128,7 @@ class LogInViewController: UIViewController {
 
     // Displaying error message
     func displayError(_ error: String) {
-        performUIUpdatesOnMain {
+        executeOnMain {
             self.presentErrorAlertController("Error", alertMessage: error)
         }
     }

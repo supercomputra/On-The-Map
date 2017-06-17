@@ -69,7 +69,7 @@ class MainViewController: UIViewController {
             Udacity.deleteSession {
                 UserDefaults.standard.removeObject(forKey: "uniqueKey")
                 UserDefaults.standard.synchronize()
-                performUIUpdatesOnMain {
+                self.executeOnMain {
                     self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                     self.dismiss(animated: true, completion: nil)
                 }

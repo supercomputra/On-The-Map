@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
     func presentErrorAlertController(_ alertTitle: String?, alertMessage: String?) {
-        performUIUpdatesOnMain {
+        self.executeOnMain {
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
             let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
             alert.addAction(destructive)

@@ -47,6 +47,7 @@ class PostVerificationViewController: UIViewController {
     }
     
     func finish() {
+        
         guard isConnectedToNetwork() else {
             presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
             return
@@ -83,12 +84,13 @@ class PostVerificationViewController: UIViewController {
             if error == nil {
                 Parse.putStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
-                        performUIUpdatesOnMain {
+                        
+                        self.executeOnMain {
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                             self.navigationController?.popToRootViewController(animated: true)
                         }
                     } else {
-                        performUIUpdatesOnMain {
+                        self.executeOnMain {
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                         }
                     }
@@ -98,14 +100,15 @@ class PostVerificationViewController: UIViewController {
                 
                 Parse.postStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
-                        performUIUpdatesOnMain {
+                        self.executeOnMain {
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                             self.navigationController?.popToRootViewController(animated: true)
                         }
                         
                     } else {
-                        performUIUpdatesOnMain {
+                        self.executeOnMain {
                             self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                            self.presentErrorAlertController("Error", alertMessage: "Error to post new information")
                         }
                     }
                 })

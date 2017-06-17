@@ -19,15 +19,14 @@ class MapViewController: MainViewController {
         mapView.delegate = self
         super.viewDidLoad()
         
-        executeWithDelay(timeInSecond: 1.0) { 
+        executeOnMain(withDelay: 1.0) {
             self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
             
             self.getAnnotations { (annotations: [MKPointAnnotation]) in
-                performUIUpdatesOnMain {
+                self.executeOnMain {
                     self.mapView.addAnnotations(annotations)
-                    performUIUpdatesOnMain {
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                    }
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                    
                 }
             }
         }
@@ -36,7 +35,7 @@ class MapViewController: MainViewController {
     override func refresh() {
         super.refresh()
         DataSource.getStudents {
-            performUIUpdatesOnMain {
+            self.executeOnMain {
                 self.mapView.reloadInputViews()
             }
         }

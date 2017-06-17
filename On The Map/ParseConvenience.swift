@@ -47,7 +47,7 @@ extension Parse {
     
     static func getStudentsLocation(completion: @escaping (_ students: [Student]?, _ error: NSError?) -> Void) {
         
-        let parameters = ["limit": "200"] as [String: AnyObject]
+        let parameters = ["limit": "300"] as [String: AnyObject]
         
         Parse.taskForGETMethod(method: Method.StudentLocation, parameters: parameters) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
@@ -64,7 +64,6 @@ extension Parse {
                 sendError("No data was returned by the request!")
                 return
             }
-            
             
             var students: [Student] = []
             

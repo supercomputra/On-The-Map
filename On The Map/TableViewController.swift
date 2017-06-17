@@ -17,7 +17,7 @@ class TableViewController: MainViewController {
         
         self.navigationController?.hidesBarsOnSwipe = true
         
-        executeWithDelay(timeInSecond: 1.0) { 
+        executeOnMain(withDelay: 1.0) {
             self.getStudents()
         }
         
@@ -26,7 +26,7 @@ class TableViewController: MainViewController {
     override func refresh() {
         super.refresh()
         DataSource.getStudents {
-            performUIUpdatesOnMain {
+            self.executeOnMain {
                 self.tableView.reloadData()
             }
         }
@@ -59,7 +59,7 @@ class TableViewController: MainViewController {
             
             DataSource.getStudents { (students: [Student]) in
                 DataSource.students = students
-                performUIUpdatesOnMain {
+                self.executeOnMain {
                     view.removeFromSuperview()
                     self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                     self.tableView.reloadData()
@@ -90,6 +90,7 @@ extension TableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let student = DataSource.students[indexPath.row]
         if let mediaURL = student.mediaURL {
             let stringURL = String(describing: mediaURL)
