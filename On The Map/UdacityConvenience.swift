@@ -22,7 +22,7 @@ enum RequestError: Error {
 
 extension Udacity {
     
-    // TODO: Refactor postSession
+    // TODO: Refactor postSession using TaskForPostMethod
     
     static func postSession(username: String, password: String, completion: @escaping (_ error: RequestError?, _ errorDescription: String?) -> Void) {
         
@@ -108,7 +108,7 @@ extension Udacity {
     }
     
     
-    // TODO: Refactor deleteSession
+    // TODO: Refactor deleteSession using TaskForPostMethod
 
     static func deleteSession(completion: @escaping () -> Void) {
         

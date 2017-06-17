@@ -21,16 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone" translatesAutoresizingMaskIntoConstraints="NO" id="Nez-8E-QB5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone 7" translatesAutoresizingMaskIntoConstraints="NO" id="bqp-KZ-cVl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Nez-8E-QB5" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3Rw-bS-w8r"/>
-                            <constraint firstItem="Nez-8E-QB5" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="4Jn-6c-Xas"/>
-                            <constraint firstAttribute="trailing" secondItem="Nez-8E-QB5" secondAttribute="trailing" id="HqG-7g-XQc"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Nez-8E-QB5" secondAttribute="bottom" id="ahe-2E-gaO"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="bqp-KZ-cVl" secondAttribute="bottom" id="35f-Sb-9cL"/>
+                            <constraint firstItem="bqp-KZ-cVl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="twD-PL-XZz"/>
+                            <constraint firstItem="bqp-KZ-cVl" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wwi-Gp-FhT"/>
+                            <constraint firstAttribute="trailing" secondItem="bqp-KZ-cVl" secondAttribute="trailing" id="zQ1-vW-8va"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="iphone" width="414" height="700"/>
+        <image name="iPhone 7" width="414" height="700"/>
     </resources>
 </document>

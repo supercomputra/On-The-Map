@@ -29,7 +29,7 @@ class Udacity: NSObject {
     
     @discardableResult func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        let request = NSMutableURLRequest(url: udacityURLFromParameters(parameters, withPathExtension: method))
+        var request = URLRequest(url: udacityURLFromParameters(parameters, withPathExtension: method))
         
         request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.Accept)
         request.addValue(Constants.JsonApplication, forHTTPHeaderField: Header.ContentType)
