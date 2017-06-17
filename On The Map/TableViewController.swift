@@ -15,6 +15,8 @@ class TableViewController: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.hidesBarsOnSwipe = true
+        
         self.navigationItem.setLeftBarButton(self.logOutBarButton, animated: true)
         if DataSource.students.count == 0 {
             DataSource.getStudents { (students: [Student]) in
@@ -31,6 +33,16 @@ class TableViewController: MainViewController {
         super.refresh()
         tableView.reloadData()
     }
+    
+    
+    override var prefersStatusBarHidden: Bool {
+        if self.navigationController?.isNavigationBarHidden == true {
+            return true
+        } else {
+            return false
+        }
+    }
+
 
 }
 
