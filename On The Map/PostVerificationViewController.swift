@@ -31,14 +31,48 @@ class PostVerificationViewController: PostingViewController {
     func finish() {
         print("finish button is tapped")
         let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as! String
-
         Parse.getStudentLocation(uniqueKey: uniqueKey) { (student: Student?, error: NSError?) in
             guard error == nil else{
                 print(error.debugDescription)
                 return
             }
             
-            print(student.debugDescription)
+            
+            
+            
+            
+            guard student != nil else {
+                print("no student returned")
+                return
+            }
+            
+            var studentToPut = student!
+            
+            studentToPut.firstName = student!.firstName!
+            studentToPut.lastName = student!.lastName
+            studentToPut.uniqueKey = student!.uniqueKey
+            studentToPut.mediaURL = URL(string: "https://zulwiyozaputra.com")
+            if let placemark = PostVerificationViewController.placemark {
+                let city = placemark.locality!
+                let state = placemark.administrativeArea!
+                
+                studentToPut.location!.mapString = "\(city) , \(state)"
+                
+                let location = placemark.location!
+                let coordinate = location.coordinate
+                studentToPut.location!.latitude = Double(coordinate.latitude)
+                studentToPut.location!.longitude = Double(coordinate.longitude)
+                
+                Parse.putStudentLocation(student: studentToPut, completion: { (error: NSError?) in
+                    if error == nil {
+                        print("success put student information")
+                        
+                    } else {
+                        print(error.debugDescription)
+                    }
+                })
+
+            }
         }
     }
 

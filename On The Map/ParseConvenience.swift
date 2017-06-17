@@ -10,63 +10,13 @@ import Foundation
 
 extension Parse {
     
-    // refactor getStudentLocation
-    /*
-    
-    static func getStudentLocation(uniqueKey: String, completion: @escaping(_ student: Student?,_ error: NSError?) -> Void) {
-        let parameters = [ParameterKeys.Where: "{\"\(ParameterKeys.UniqueKey)\":\"" + "\(uniqueKey)" + "\"}" as AnyObject]
-        let urlString = "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%22\(uniqueKey)%22%7D"
-        let url = URL(string: urlString)
-        var request = URLRequest(url: url!)
-        
-        print(url!)
-        request.addValue(Parse.Constants.ApplicationID, forHTTPHeaderField: Parse.ParameterKeys.ApplicationID)
-        request.addValue(Parse.Constants.ApiKey, forHTTPHeaderField: Parse.ParameterKeys.ApiKey)
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request) { data, response, error in
-            func sendError(_ error: String) {
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
-            }
-            
-            guard (error == nil) else {
-                sendError("There was an error with your request: \(error.debugDescription)")
-                return
-            }
-            
-            
-            
-            var result: AnyObject! = nil
-            do {
-                result = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject
-            } catch {
-                sendError("Could not parse the data as JSON: '\(data!)'")
-            }
-
-            
-            guard let results = result!["results"] as? [String : AnyObject] else {
-                sendError("No data was returned by the request!")
-                return
-            }
-            
-            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-            
-            print(results)
-        }
-        task.resume()
-    }
-    */
-    
-    
-    
     // This is a convenience method for get a student location
     
     static func getStudentLocation(uniqueKey: String, completion: @escaping (_ student: Student?, _ error: NSError?) -> Void) {
         
         let parameters = [ParameterKeys.Where: "{\"\(ParameterKeys.UniqueKey)\":\"" + "\(uniqueKey)" + "\"}" as AnyObject]
         
-        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
+        Parse.taskForGETMethod(method: Method.StudentLocation, parameters: parameters) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
@@ -97,7 +47,7 @@ extension Parse {
         
         let parameters = ["limit": "200"] as [String: AnyObject]
         
-        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
+        Parse.taskForGETMethod(method: Method.StudentLocation, parameters: parameters) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
@@ -149,5 +99,33 @@ extension Parse {
             completion(students, nil)
 
         }
+    }
+    
+    // This is a convenience method for get a student location
+    
+    static func putStudentLocation(student: Student, completion: @escaping (_ error: NSError?) -> Void) {
+            let method = Method.StudentLocation + "/" + student.objectId!
+        
+        let jsonBody = "{\"uniqueKey\": \"\(student.uniqueKey!)\", \"firstName\": \"\(student.firstName ?? "")\", \"lastName\": \"\(student.lastName ?? "")\",\"mapString\": \"\(String(describing: student.location!.mapString!))\", \"mediaURL\": \"\(String(describing: student.mediaURL!))\",\"latitude\": \(String(describing: student.location!.latitude!)), \"longitude\": \(student.location!.longitude!)}"
+        
+        Parse.taskForWriteMethod(method: method, httpMethod: .PUT, jsonBody: jsonBody) { (result: AnyObject?, error: NSError?) in
+            func sendError(_ error: String) {
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completion(NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+            }
+            
+            guard (error == nil) else {
+                sendError("There was an error with your request: \(error.debugDescription)")
+                return
+            }
+            
+            guard result!["updatedAt"] != nil else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            completion(nil)
+        }
+        
     }
 }

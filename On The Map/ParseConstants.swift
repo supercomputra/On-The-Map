@@ -16,11 +16,17 @@ extension Parse {
         static let ApiScheme = "https"
         static let ApiHost = "parse.udacity.com"
         static let ApiPath = "/parse"
+        static let JSONApplication = "application/json"
 
     }
     
     struct Method {
-        static let studentLocation = "/classes/StudentLocation"
+        static let StudentLocation = "/classes/StudentLocation"
+    }
+    
+    enum Write: String {
+        case PUT = "PUT"
+        case POST = "POST"
     }
     
     struct ParameterKeys {
@@ -31,6 +37,7 @@ extension Parse {
         static let Query = "query"
         static let Where = "where"
         static let UniqueKey = "uniqueKey"
+        static let ContentType = "Content-Type"
         
     }
     

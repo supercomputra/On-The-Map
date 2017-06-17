@@ -9,6 +9,7 @@
 import Foundation
 
 class Parse: NSObject {
+    
     static var session = URLSession.shared
     
     var requestedToken: String? = nil
@@ -19,9 +20,11 @@ class Parse: NSObject {
         super.init()
     }
     
-    @discardableResult static func taskForGETMethod(parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    // MARK: GET
+    
+    @discardableResult static func taskForGETMethod(method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        let url = self.parseURLFromParameters(parameters)
+        let url = self.parseURLFromParameters(parameters: parameters, pathExtension: method)
         
         let request = NSMutableURLRequest(url: url)
         
@@ -63,22 +66,19 @@ class Parse: NSObject {
     
     // POST
     
-    // MARK: POST
+    // MARK: PUT/POST
     
-    @discardableResult static func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    @discardableResult static func taskForWriteMethod(method: String, httpMethod: Write, jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+
+        var request = URLRequest(url: self.parseURLFromParameters(parameters: nil, pathExtension: method))
         
-        // Build the URL, Configure the request
-        let request = NSMutableURLRequest(url: self.parseURLFromParameters(parameters))
-        
-        request.httpMethod = "POST"
+        request.httpMethod = httpMethod.rawValue
         request.addValue(Constants.ApplicationID, forHTTPHeaderField: ParameterKeys.ApplicationID)
         request.addValue(Constants.ApiKey, forHTTPHeaderField: ParameterKeys.ApiKey)
-        
-        
+        request.addValue(Constants.JSONApplication, forHTTPHeaderField: ParameterKeys.ContentType)
         
         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
         
-        // Make the request
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {
@@ -86,32 +86,24 @@ class Parse: NSObject {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completionHandlerForPOST(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
             }
-            
-            // GUARD: Was there an error?
+ 
             guard (error == nil) else {
                 sendError("There was an error with your request: \(error.debugDescription)")
                 return
             }
-            
-            // GUARD: Did we get a successful 2XX response?
+
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 sendError("Your request returned a status code other than 2xx!")
                 return
             }
-            
-            // GUARD: Was there any data returned?
+
             guard let data = data else {
                 sendError("No data was returned by the request!")
                 return
             }
-            
-            // Parse the data and use the data (happens in completion handler)
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
         }
-        
-        // 7. Start the request
         task.resume()
-        
         return task
     }
 
@@ -140,18 +132,23 @@ class Parse: NSObject {
     }
 
     // Create a URL from parameters
-    private static func parseURLFromParameters(_ parameters: [String:AnyObject]) -> URL {
+    private static func parseURLFromParameters(parameters: [String:AnyObject]?, pathExtension: String?) -> URL {
         
         var components = URLComponents()
         components.scheme = self.Constants.ApiScheme
         components.host = self.Constants.ApiHost
-        components.path = self.Constants.ApiPath + "/" + self.Method.studentLocation
+        components.path = self.Constants.ApiPath + "/" + (pathExtension ?? "")
         components.queryItems = [URLQueryItem]()
+        
+        guard let parameters = parameters else {
+            return components.url!
+        }
         
         for (key, value) in parameters {
             let queryItem = URLQueryItem(name: key, value: "\(value)")
             components.queryItems!.append(queryItem)
         }
+        
         return components.url!
     }
 
