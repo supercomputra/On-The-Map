@@ -32,6 +32,8 @@ extension Parse {
                 return
             }
             
+            print(result)
+            
             let studentDictionary = result[0]
             let location = Location(dictionary: studentDictionary)
             let student = Student(dictionary: studentDictionary, location: location)

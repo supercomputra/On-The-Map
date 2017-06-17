@@ -37,10 +37,6 @@ class PostVerificationViewController: PostingViewController {
                 return
             }
             
-            
-            
-            
-            
             guard student != nil else {
                 print("no student returned")
                 return

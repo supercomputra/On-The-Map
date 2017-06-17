@@ -76,7 +76,6 @@ class Parse: NSObject {
         request.addValue(Constants.ApplicationID, forHTTPHeaderField: ParameterKeys.ApplicationID)
         request.addValue(Constants.ApiKey, forHTTPHeaderField: ParameterKeys.ApiKey)
         request.addValue(Constants.JSONApplication, forHTTPHeaderField: ParameterKeys.ContentType)
-        
         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
