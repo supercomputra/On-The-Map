@@ -83,12 +83,20 @@ class MainViewController: UIViewController {
     }
     
     func refresh() {
+        guard isConnectedToNetwork() else {
+            presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
+            return
+        }
     }
     
     func getAnnotations(_ completion: @escaping (_ completion: [MKPointAnnotation])-> Void) {
         
-        var annotations = [MKPointAnnotation]()
+        guard isConnectedToNetwork() else {
+            presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
+            return
+        }
         
+        var annotations = [MKPointAnnotation]()
         DataSource.getStudents { (students: [Student]) in
             
             for student in students {
@@ -133,7 +141,7 @@ extension MainViewController {
             completion()
         }
         alert.addAction(logOut)
-        alert.addAction(cancel )
+        alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
     

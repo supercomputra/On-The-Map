@@ -56,11 +56,12 @@ class LogInViewController: UIViewController {
             email = emailTextField.text!
             password = passwordTextField.text!
             
-            
-            
+            guard isConnectedToNetwork() else {
+                presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
+                return
+            }
             
             self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
-            
             Udacity.postSession(username: email!, password: password!) { (error: RequestError?, errorDescription: String?) in
                 if error == nil {
                     performUIUpdatesOnMain {
@@ -93,6 +94,10 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func signUp() {
+        guard isConnectedToNetwork() else {
+            presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
+            return
+        }
         let url = "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated"
         self.presentURLInSafariViewController(stringURL: url)
     }
@@ -127,8 +132,6 @@ class LogInViewController: UIViewController {
             self.presentErrorAlertController("Error", alertMessage: error)
         }
     }
-    
-    
 }
 
 // Facebook

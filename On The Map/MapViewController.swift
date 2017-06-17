@@ -19,13 +19,15 @@ class MapViewController: MainViewController {
         mapView.delegate = self
         super.viewDidLoad()
         
-        self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
-
-        getAnnotations { (annotations: [MKPointAnnotation]) in
-            performUIUpdatesOnMain {
-                self.mapView.addAnnotations(annotations)
+        executeWithDelay(timeInSecond: 1.0) { 
+            self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
+            
+            self.getAnnotations { (annotations: [MKPointAnnotation]) in
                 performUIUpdatesOnMain {
-                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                    self.mapView.addAnnotations(annotations)
+                    performUIUpdatesOnMain {
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                    }
                 }
             }
         }

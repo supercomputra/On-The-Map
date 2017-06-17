@@ -10,6 +10,7 @@
 		6E325CF31EF5670E00AF3502 /* SafariServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF21EF5670E00AF3502 /* SafariServices.swift */; };
 		6E325CF51EF56A6C00AF3502 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF41EF56A6C00AF3502 /* AlertController.swift */; };
 		6E325CF71EF56E4700AF3502 /* UITextFieldDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF61EF56E4700AF3502 /* UITextFieldDelegator.swift */; };
+		6E325CF91EF5BC1F00AF3502 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF81EF5BC1F00AF3502 /* NetworkReachability.swift */; };
 		6E57A33F1E2BFCB600CA828E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */; };
 		6E64243D1EF245C500ED473B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64243C1EF245C500ED473B /* Student.swift */; };
 		6E64243F1EF245D200ED473B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64243E1EF245D200ED473B /* Location.swift */; };
@@ -73,6 +74,7 @@
 		6E325CF21EF5670E00AF3502 /* SafariServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariServices.swift; sourceTree = "<group>"; };
 		6E325CF41EF56A6C00AF3502 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		6E325CF61EF56E4700AF3502 /* UITextFieldDelegator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldDelegator.swift; sourceTree = "<group>"; };
+		6E325CF81EF5BC1F00AF3502 /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		6E64243C1EF245C500ED473B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Student.swift; path = "On The Map/Student.swift"; sourceTree = "<group>"; };
 		6E64243E1EF245D200ED473B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = "On The Map/Location.swift"; sourceTree = "<group>"; };
@@ -207,18 +209,6 @@
 			name = Asset;
 			sourceTree = "<group>";
 		};
-		6E72326F1E54936100D754AB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6E325CF21EF5670E00AF3502 /* SafariServices.swift */,
-				6E862F1E1E2B68B700D1067D /* UIStateController.swift */,
-				6EFE79281EF5247500DC67E3 /* ActivityIndicatorController.swift */,
-				6E325CF41EF56A6C00AF3502 /* AlertController.swift */,
-				6E325CF61EF56E4700AF3502 /* UITextFieldDelegator.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		6E7232701E54937500D754AB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +257,12 @@
 			children = (
 				6E862EE71E2B56BE00D1067D /* AppDelegate.swift */,
 				6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */,
-				6E72326F1E54936100D754AB /* View */,
+				6E325CF81EF5BC1F00AF3502 /* NetworkReachability.swift */,
+				6E325CF21EF5670E00AF3502 /* SafariServices.swift */,
+				6E862F1E1E2B68B700D1067D /* UIStateController.swift */,
+				6EFE79281EF5247500DC67E3 /* ActivityIndicatorController.swift */,
+				6E325CF41EF56A6C00AF3502 /* AlertController.swift */,
+				6E325CF61EF56E4700AF3502 /* UITextFieldDelegator.swift */,
 				6E57A3401E2C698B00CA828E /* Controller */,
 				6EA3DBAF1E54879D005FD5BF /* Clients */,
 				6EA3DBAE1E548790005FD5BF /* Model */,
@@ -620,6 +615,7 @@
 				6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */,
 				6E7232721E5499B400D754AB /* UdacityConvenience.swift in Sources */,
 				6E862F1F1E2B68B700D1067D /* UIStateController.swift in Sources */,
+				6E325CF91EF5BC1F00AF3502 /* NetworkReachability.swift in Sources */,
 				6E64243D1EF245C500ED473B /* Student.swift in Sources */,
 				6E7ABC6E1EF3AE3300CE1651 /* PostViewController.swift in Sources */,
 				6E7ABC721EF3B6C400CE1651 /* PostVerificationViewController.swift in Sources */,

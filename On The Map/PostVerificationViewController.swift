@@ -42,15 +42,15 @@ class PostVerificationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getDataFromDataDelegate() {
-        
-    }
-    
     func back() {
         self.navigationController?.popViewController(animated: true)
     }
     
     func finish() {
+        guard isConnectedToNetwork() else {
+            presentErrorAlertController("Network Connection Error", alertMessage: "No network connection, please try again later")
+            return
+        }
         
         self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
         print("finish button is tapped")
