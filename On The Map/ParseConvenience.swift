@@ -11,9 +11,10 @@ import Foundation
 extension Parse {
     
     // refactor getStudentLocation
+    /*
     
     static func getStudentLocation(uniqueKey: String, completion: @escaping(_ student: Student?,_ error: NSError?) -> Void) {
-        
+        let parameters = [ParameterKeys.Where: "{\"\(ParameterKeys.UniqueKey)\":\"" + "\(uniqueKey)" + "\"}" as AnyObject]
         let urlString = "https://parse.udacity.com/parse/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%22\(uniqueKey)%22%7D"
         let url = URL(string: urlString)
         var request = URLRequest(url: url!)
@@ -55,16 +56,17 @@ extension Parse {
         }
         task.resume()
     }
+    */
     
-    /*
+    
     
     // This is a convenience method for get a student location
     
     static func getStudentLocation(uniqueKey: String, completion: @escaping (_ student: Student?, _ error: NSError?) -> Void) {
         
-        let dictionary = ["where": ["uniqueKey":"\(uniqueKey)"]] as [String: AnyObject]
+        let parameters = [ParameterKeys.Where: "{\"\(ParameterKeys.UniqueKey)\":\"" + "\(uniqueKey)" + "\"}" as AnyObject]
         
-        Parse.taskForGETMethod(parameters: nil, queryDictionary: dictionary) { (data: AnyObject?, error: NSError?) in
+        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
@@ -75,29 +77,27 @@ extension Parse {
                 return
             }
             
-            guard let result = data!["results"] as? [String : AnyObject] else {
+            guard let result = data!["results"] as? [[String : AnyObject]] else {
                 sendError("No data was returned by the request!")
                 return
             }
             
-            var returnedStudent: Student!
+            let studentDictionary = result[0]
+            let location = Location(dictionary: studentDictionary)
+            let student = Student(dictionary: studentDictionary, location: location)
             
-            let location = Location(dictionary: result)
-            let student = Student(dictionary: result, location: location)
-            
-            returnedStudent = student
-            completion(returnedStudent, nil)
+            completion(student, nil)
             
         }
         
     }
-    */
+    
     
     static func getStudentsLocation(completion: @escaping (_ students: [Student]?, _ error: NSError?) -> Void) {
         
         let parameters = ["limit": "200"] as [String: AnyObject]
         
-        Parse.taskForGETMethod(parameters: parameters, queryDictionary: nil) { (data: AnyObject?, error: NSError?) in
+        Parse.taskForGETMethod(parameters: parameters) { (data: AnyObject?, error: NSError?) in
             func sendError(_ error: String) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
                 completion(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))

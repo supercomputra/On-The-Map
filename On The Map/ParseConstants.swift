@@ -29,6 +29,7 @@ extension Parse {
         static let SessionID = "session_id"
         static let RequestToken = "request_token"
         static let Query = "query"
+        static let Where = "where"
         static let UniqueKey = "uniqueKey"
         
     }

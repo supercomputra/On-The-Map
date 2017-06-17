@@ -19,22 +19,14 @@ class Parse: NSObject {
         super.init()
     }
     
-    @discardableResult static func taskForGETMethod(parameters: [String:AnyObject]?, queryDictionary: [String: AnyObject]?, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    @discardableResult static func taskForGETMethod(parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-        var url: URL? = nil
+        let url = self.parseURLFromParameters(parameters)
         
-        if parameters != nil {
-            url = self.parseURLFromParameters(parameters!)
-        } else {
-            url = self.parseURLFromQuery(queryDictionary!)
-        }
-        
-        let request = NSMutableURLRequest(url: url!)
+        let request = NSMutableURLRequest(url: url)
         
         request.addValue(Parse.Constants.ApplicationID, forHTTPHeaderField: Parse.ParameterKeys.ApplicationID)
         request.addValue(Parse.Constants.ApiKey, forHTTPHeaderField: Parse.ParameterKeys.ApiKey)
-        
-        print(request)
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
@@ -161,29 +153,6 @@ class Parse: NSObject {
             components.queryItems!.append(queryItem)
         }
         return components.url!
-        
     }
-    
-    // Create a URL from parameters
-    private static func parseURLFromQuery(_ queryDictionary: [String: AnyObject]) -> URL {
-        
-        var jsonString: String? = nil
-        var jsonData: Data? = nil
-        
-        do {
-            jsonData = try JSONSerialization.data(withJSONObject: queryDictionary, options: .prettyPrinted)
-            jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue)! as String
-        } catch {
-            let _ = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(queryDictionary)'"]
-        }
-        
-        var components = URLComponents()
-        components.scheme = self.Constants.ApiScheme
-        components.host = self.Constants.ApiHost
-        components.path = self.Constants.ApiPath + "/" + self.Method.studentLocation
-        components.query = jsonString!
-        
-        return components.url!
-        
-    }
+
 }
