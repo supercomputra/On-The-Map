@@ -84,12 +84,23 @@ class PostVerificationViewController: UIViewController {
                         self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                         self.navigationController?.popToRootViewController(animated: true)
                     } else {
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                         print(error.debugDescription)
                     }
                 })
                 
             } else {
-                self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                
+                Parse.postStudentLocation(student: studentToPut, completion: { (error: NSError?) in
+                    if error == nil {
+                        print("success put student information")
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        self.navigationController?.popToRootViewController(animated: true)
+                    } else {
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        print(error.debugDescription)
+                    }
+                })
                 
             }
 

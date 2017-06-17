@@ -20,18 +20,7 @@
                     <view key="view" contentMode="scaleToFill" id="l6e-f9-NEP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone" translatesAutoresizingMaskIntoConstraints="NO" id="SPz-k7-0Cv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="SPz-k7-0Cv" firstAttribute="leading" secondItem="l6e-f9-NEP" secondAttribute="leading" id="OoA-zc-Kx5"/>
-                            <constraint firstItem="p8R-2q-GhG" firstAttribute="top" secondItem="SPz-k7-0Cv" secondAttribute="bottom" id="a5w-pT-rCZ"/>
-                            <constraint firstItem="SPz-k7-0Cv" firstAttribute="top" secondItem="l6e-f9-NEP" secondAttribute="top" id="oEa-i4-CsT"/>
-                            <constraint firstAttribute="trailing" secondItem="SPz-k7-0Cv" secondAttribute="trailing" id="rZe-6l-kcT"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKk-mj-vxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +28,4 @@
             <point key="canvasLocation" x="205.59999999999999" y="512.29385307346331"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="iphone" width="414" height="700"/>
-    </resources>
 </document>

@@ -109,7 +109,7 @@ class PostViewController: UIViewController {
     }
     
     func presentPostVerificationViewController() -> Void {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Posting", bundle: nil)
         let postVerificationViewController = storyBoard.instantiateViewController(withIdentifier: "PostVerificationViewController") as! PostVerificationViewController
         if let stringURL = self.mediaURLTextField.text {
             let mediaURL = URL(string: stringURL)

@@ -64,11 +64,15 @@ class MainViewController: UIViewController {
     }
     
     func logOut() {
-        dismiss(animated: true) {
-            print("View get dismissed")
-            Udacity.deleteSession()
+        self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
+        Udacity.deleteSession {
             UserDefaults.standard.removeObject(forKey: "uniqueKey")
             UserDefaults.standard.synchronize()
+            performUIUpdatesOnMain {
+                self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                self.dismiss(animated: true, completion: nil)
+            }
+            
         }
     }
     
@@ -111,7 +115,7 @@ class MainViewController: UIViewController {
     
     // Presenting next view
     func presentPostingViewController() -> Void {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard = UIStoryboard(name: "Posting", bundle: nil)
         let addViewController = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
         self.navigationController?.pushViewController(addViewController, animated: true)
     }

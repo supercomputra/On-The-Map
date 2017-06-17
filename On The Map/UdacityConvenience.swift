@@ -110,7 +110,7 @@ extension Udacity {
     
     // TODO: Refactor deleteSession
 
-    static func deleteSession() -> Void {
+    static func deleteSession(completion: @escaping () -> Void) {
         
         let sessionURL = URL(string: "https://www.udacity.com/api/session")!
         let request = NSMutableURLRequest(url: sessionURL)
@@ -139,9 +139,12 @@ extension Udacity {
             }
             
             let range = Range(uncheckedBounds: (5, data!.count))
-            let decryptedData = data?.subdata(in: range)
+            let _ = data?.subdata(in: range)
             
-            print(NSString(data: decryptedData!, encoding: String.Encoding.utf8.rawValue)!)
+            
+            completion()
+            
+            
         }
         task.resume()
         

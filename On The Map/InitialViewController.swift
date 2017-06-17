@@ -10,22 +10,28 @@ import UIKit
 
 class InitialViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as? String {
-            print("logging in with \(uniqueKey)")
-            presentMainView(animate: true)
+    override func viewDidAppear(_ animated: Bool) {
+        if self.isLoggedIn() {
+            self.presentMainView(animate: true)
         } else {
-            presentLoginView(animate: true)
+            self.presentLoginView(animate: true)
+        }
+    }
+    
+    func isLoggedIn() -> Bool {
+        if UserDefaults.standard.value(forKey: "uniqueKey") as? String != nil {
+            return true
+        } else {
+            return false
         }
     }
     
     // Presenting Main view
     func presentMainView(animate: Bool) -> Void {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let homeTabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeTabBarController") as! UITabBarController
+        let homeTabBarController = storyBoard.instantiateViewController(withIdentifier: "MainTabBarController")
         if animate {
+            print(homeTabBarController)
             self.present(homeTabBarController, animated: true, completion: nil)
         } else {
             self.present(homeTabBarController, animated: false, completion: nil)
@@ -35,22 +41,11 @@ class InitialViewController: UIViewController {
     // Presenting Login view
     func presentLoginView(animate: Bool) -> Void {
         let storyBoard = UIStoryboard(name: "LogIn", bundle: nil)
-        let logInViewController = storyBoard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+        let logInViewController = storyBoard.instantiateViewController(withIdentifier: "LogInViewController")
         if animate {
             self.present(logInViewController, animated: true, completion: nil)
         } else {
             self.present(logInViewController, animated: false, completion: nil)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

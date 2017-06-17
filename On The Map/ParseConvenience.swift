@@ -130,4 +130,30 @@ extension Parse {
         }
         
     }
+    
+    static func postStudentLocation(student: Student, completion: @escaping (_ error: NSError?) -> Void) {
+        let method = Method.StudentLocation
+        
+        let jsonBody = "{\"uniqueKey\": \"\(student.uniqueKey!)\", \"firstName\": \"\(student.firstName ?? "")\", \"lastName\": \"\(student.lastName ?? "")\",\"mapString\": \"\(String(describing: student.location!.mapString!))\", \"mediaURL\": \"\(String(describing: student.mediaURL!))\",\"latitude\": \(String(describing: student.location!.latitude!)), \"longitude\": \(student.location!.longitude!)}"
+        
+        Parse.taskForWriteMethod(method: method, httpMethod: .POST, jsonBody: jsonBody) { (result: AnyObject?, error: NSError?) in
+            func sendError(_ error: String) {
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completion(NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+            }
+            
+            guard (error == nil) else {
+                sendError("There was an error with your request: \(error.debugDescription)")
+                return
+            }
+            
+            guard result!["updatedAt"] != nil else {
+                sendError("No data was returned by the request!")
+                return
+            }
+            
+            completion(nil)
+        }
+        
+    }
 }

@@ -13,3 +13,9 @@ func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
         updates()
     }
 }
+
+func executeWithDelay(timeInSecond: Double, _ updates: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + timeInSecond, execute: {
+        updates()
+    })
+}
