@@ -47,11 +47,11 @@ class MainViewController: UIViewController {
         let logOutBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logOut))
         let font = UIFont.boldSystemFont(ofSize: 15.0)
         logOutBarButtonItem.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: Udacity.Color.blue], for:UIControlState.normal)
-        
         self.navigationItem.setLeftBarButton(logOutBarButtonItem, animated: false)
         
         let addBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_addpin"), style: .plain, target: self, action: #selector(add))
         addBarButtonItem.tintColor = Udacity.Color.blue
+        
         let refreshBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(refresh))
         refreshBarButtonItem.tintColor = Udacity.Color.blue
         

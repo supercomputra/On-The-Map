@@ -283,7 +283,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BhM-Qa-Gxv"/>
                     <connections>
-                        <outlet property="findLocatinButton" destination="jJ2-aa-APf" id="smn-of-0zU"/>
+                        <outlet property="findLocationButton" destination="jJ2-aa-APf" id="piL-97-EGs"/>
                         <outlet property="locationTextField" destination="3Ty-Qs-Gi8" id="YxH-2k-bkq"/>
                         <outlet property="mediaURLTextField" destination="nCv-9h-SBS" id="fzA-Lq-BeY"/>
                     </connections>

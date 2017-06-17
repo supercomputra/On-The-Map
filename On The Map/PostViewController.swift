@@ -11,19 +11,22 @@ import MapKit
 
 class PostViewController: UIViewController {
     
-    
-
     @IBOutlet weak var locationTextField: UITextField!
     
     @IBOutlet weak var mediaURLTextField: UITextField!
     
-    
-    @IBOutlet weak var findLocatinButton: UIButton!
+    @IBOutlet weak var findLocationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        findLocatinButton.addTarget(self, action: #selector(getLocation), for: .touchUpInside)
+        mediaURLTextField.delegate = self
+        
+        let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
+        backBarButtonItem.tintColor = Udacity.Color.blue
+        self.navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
+        
+        findLocationButton.addTarget(self, action: #selector(getLocation), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -31,6 +34,10 @@ class PostViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func back() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func getLocation() {
@@ -90,16 +97,15 @@ class PostViewController: UIViewController {
         let addViewController = storyBoard.instantiateViewController(withIdentifier: "PostVerificationViewController") as! PostVerificationViewController
         self.navigationController?.pushViewController(addViewController, animated: true)
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension PostViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == mediaURLTextField {
+            if !(textField.text?.contains("http://"))! && !(textField.text?.contains("https://"))! {
+                textField.text = "http://"
+            }
+        }
     }
-    */
-
 }

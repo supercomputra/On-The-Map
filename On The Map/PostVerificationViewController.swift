@@ -11,6 +11,10 @@ import MapKit
 
 class PostVerificationViewController: UIViewController {
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    
+    let backgroundView = UIView()
+    
     @IBOutlet weak var finishButton: UIButton!
     
     static var placemark: CLPlacemark? = nil
@@ -19,6 +23,11 @@ class PostVerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
+        backBarButtonItem.tintColor = Udacity.Color.blue
+        self.navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
+        
         self.mapView.showAnnotations([MKPlacemark(placemark: PostVerificationViewController.placemark!)], animated: true)
         finishButton.addTarget(self, action: #selector(finish), for: .touchUpInside)
     }
@@ -28,17 +37,18 @@ class PostVerificationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func finish() {
+        
+        self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
         print("finish button is tapped")
         let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as! String
         Parse.getStudentLocation(uniqueKey: uniqueKey) { (student: Student?, error: NSError?) in
             guard error == nil else{
                 print(error.debugDescription)
-                return
-            }
-            
-            guard student != nil else {
-                print("no student returned")
                 return
             }
             
@@ -58,17 +68,24 @@ class PostVerificationViewController: UIViewController {
                 let coordinate = location.coordinate
                 studentToPut.location!.latitude = Double(coordinate.latitude)
                 studentToPut.location!.longitude = Double(coordinate.longitude)
-                
+            }
+            
+            if error == nil {
                 Parse.putStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
                         print("success put student information")
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                         self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         print(error.debugDescription)
                     }
                 })
-
+                
+            } else {
+                self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                
             }
+
         }
     }
 
