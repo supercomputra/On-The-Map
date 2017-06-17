@@ -24,7 +24,6 @@
 		6E862EEA1E2B56BE00D1067D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EE91E2B56BE00D1067D /* LogInViewController.swift */; };
 		6E862EED1E2B56BE00D1067D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E862EEB1E2B56BE00D1067D /* Main.storyboard */; };
 		6E862EF01E2B56BE00D1067D /* On_The_Map.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EEE1E2B56BE00D1067D /* On_The_Map.xcdatamodeld */; };
-		6E862EF21E2B56BE00D1067D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E862EF11E2B56BE00D1067D /* Assets.xcassets */; };
 		6E862EF51E2B56BE00D1067D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E862EF31E2B56BE00D1067D /* LaunchScreen.storyboard */; };
 		6E862F001E2B56BF00D1067D /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862EFF1E2B56BF00D1067D /* On_The_MapTests.swift */; };
 		6E862F0B1E2B56BF00D1067D /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F0A1E2B56BF00D1067D /* On_The_MapUITests.swift */; };
@@ -37,6 +36,7 @@
 		6ED70F441E2CB913001E8620 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F401E2CB913001E8620 /* FBSDKCoreKit.framework */; };
 		6ED70F451E2CB913001E8620 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */; };
 		6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */; };
+		6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */; };
 		928DBCCEE3274DB60AD7B0B8 /* Pods_On_The_MapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */; };
 		C8694540A53D3C1F44898E23 /* Pods_On_The_MapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */; };
 		EDAD913E2C8D475C3142D95D /* Pods_On_The_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0C3A9F91956C347A4B201C /* Pods_On_The_Map.framework */; };
@@ -81,7 +81,6 @@
 		6E862EE91E2B56BE00D1067D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		6E862EEC1E2B56BE00D1067D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E862EEF1E2B56BE00D1067D /* On_The_Map.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = On_The_Map.xcdatamodel; sourceTree = "<group>"; };
-		6E862EF11E2B56BE00D1067D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E862EF41E2B56BE00D1067D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E862EF61E2B56BE00D1067D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E862EFB1E2B56BF00D1067D /* On The MapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On The MapTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +98,7 @@
 		6ED70F401E2CB913001E8620 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		852CCE917ADE5F075E2BF053 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CCDDD553B1BF25C4AFF58 /* Pods-On The MapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B0106C94A6F379DAFDFACFA0 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 		6E72326E1E54934900D754AB /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				6E862EF11E2B56BE00D1067D /* Assets.xcassets */,
+				6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */,
 				6E862EEB1E2B56BE00D1067D /* Main.storyboard */,
 				6E862EF31E2B56BE00D1067D /* LaunchScreen.storyboard */,
 			);
@@ -425,7 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E862EF51E2B56BE00D1067D /* LaunchScreen.storyboard in Resources */,
-				6E862EF21E2B56BE00D1067D /* Assets.xcassets in Resources */,
+				6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */,
 				6E862EED1E2B56BE00D1067D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,6 +768,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zulwiozaputra.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -782,6 +783,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zulwiozaputra.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
