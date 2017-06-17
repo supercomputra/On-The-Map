@@ -22,7 +22,7 @@ extension UIViewController {
             self.view.isUserInteractionEnabled = false
             let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
             background.frame = frame
-            background.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.66)
+            background.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.40)
             self.view.addSubview(background)
             self.activityIndicator(activityIndicator: activityIndicator, animate: true, on: background)
             

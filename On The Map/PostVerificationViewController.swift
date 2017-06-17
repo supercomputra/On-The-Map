@@ -9,17 +9,13 @@
 import UIKit
 import MapKit
 
-protocol DataProtocol {
-    func mediaURLDelegate() -> URL
-}
-
 class PostVerificationViewController: UIViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
     
     let backgroundView = UIView()
     
-    var dataDelegate: DataProtocol?
+    var mediaURL: URL? = nil
     
     @IBOutlet weak var finishButton: UIButton!
     
@@ -29,8 +25,6 @@ class PostVerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(dataDelegate?.mediaURLDelegate() ?? "no url returned")
         
         let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
         backBarButtonItem.tintColor = Udacity.Color.blue
@@ -69,7 +63,8 @@ class PostVerificationViewController: UIViewController {
             studentToPut.firstName = student!.firstName!
             studentToPut.lastName = student!.lastName
             studentToPut.uniqueKey = student!.uniqueKey
-            studentToPut.mediaURL = URL(string: "https://zulwiyozaputra.com")
+            studentToPut.mediaURL = self.mediaURL!
+            
             if let placemark = PostVerificationViewController.placemark {
                 let city = placemark.locality!
                 let state = placemark.administrativeArea!

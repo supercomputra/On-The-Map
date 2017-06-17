@@ -18,9 +18,20 @@ class TableViewController: MainViewController {
         self.navigationController?.hidesBarsOnSwipe = true
         
         if DataSource.students.count == 0 {
+            
+            let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+            let view = UIView(frame: frame)
+            view.backgroundColor = .white
+            self.view.addSubview(view)
+            
+            
+            self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
+
             DataSource.getStudents { (students: [Student]) in
                 DataSource.students = students
                 performUIUpdatesOnMain {
+                    view.removeFromSuperview()
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
                     self.tableView.reloadData()
                 }
             }
