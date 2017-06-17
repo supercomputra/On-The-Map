@@ -13,6 +13,9 @@
 		6E6424411EF27A0600ED473B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6424401EF27A0600ED473B /* MainViewController.swift */; };
 		6E6424431EF2855700ED473B /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6424421EF2855700ED473B /* Session.swift */; };
 		6E657D2D1E55960B000CA82E /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E657D2C1E55960B000CA82E /* ParseConvenience.swift */; };
+		6E659F871EF5523B00A2D727 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E659F851EF5523B00A2D727 /* Initial.storyboard */; };
+		6E659F8A1EF5524B00A2D727 /* Posting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E659F881EF5524B00A2D727 /* Posting.storyboard */; };
+		6E659F8D1EF552F300A2D727 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E659F8B1EF552F300A2D727 /* LogIn.storyboard */; };
 		6E7232721E5499B400D754AB /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232711E5499B400D754AB /* UdacityConvenience.swift */; };
 		6E7232751E54AD9200D754AB /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232741E54AD9200D754AB /* Parse.swift */; };
 		6E7232771E54AE6A00D754AB /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7232761E54AE6A00D754AB /* ParseConstants.swift */; };
@@ -37,6 +40,7 @@
 		6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */; };
 		6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */; };
 		6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */; };
+		6EFE792B1EF54BE600DC67E3 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE792A1EF54BE600DC67E3 /* InitialViewController.swift */; };
 		928DBCCEE3274DB60AD7B0B8 /* Pods_On_The_MapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */; };
 		C8694540A53D3C1F44898E23 /* Pods_On_The_MapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */; };
 		EDAD913E2C8D475C3142D95D /* Pods_On_The_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0C3A9F91956C347A4B201C /* Pods_On_The_Map.framework */; };
@@ -69,6 +73,9 @@
 		6E6424401EF27A0600ED473B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6E6424421EF2855700ED473B /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = "On The Map/Session.swift"; sourceTree = "<group>"; };
 		6E657D2C1E55960B000CA82E /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConvenience.swift; path = "On The Map/ParseConvenience.swift"; sourceTree = "<group>"; };
+		6E659F861EF5523B00A2D727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Initial.storyboard; sourceTree = "<group>"; };
+		6E659F891EF5524B00A2D727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Posting.storyboard; sourceTree = "<group>"; };
+		6E659F8C1EF552F300A2D727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
 		6E7232711E5499B400D754AB /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityConvenience.swift; path = "On The Map/UdacityConvenience.swift"; sourceTree = "<group>"; };
 		6E7232741E54AD9200D754AB /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parse.swift; path = "On The Map/Parse.swift"; sourceTree = "<group>"; };
 		6E7232761E54AE6A00D754AB /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseConstants.swift; path = "On The Map/ParseConstants.swift"; sourceTree = "<group>"; };
@@ -99,6 +106,7 @@
 		6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewManager.swift; sourceTree = "<group>"; };
+		6EFE792A1EF54BE600DC67E3 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		852CCE917ADE5F075E2BF053 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CCDDD553B1BF25C4AFF58 /* Pods-On The MapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B0106C94A6F379DAFDFACFA0 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 		6E57A3401E2C698B00CA828E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6EFE792A1EF54BE600DC67E3 /* InitialViewController.swift */,
 				6E862EE91E2B56BE00D1067D /* LogInViewController.swift */,
 				6E6424401EF27A0600ED473B /* MainViewController.swift */,
 				6E862F1A1E2B613500D1067D /* MapViewController.swift */,
@@ -184,6 +193,9 @@
 			children = (
 				6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */,
 				6E862EEB1E2B56BE00D1067D /* Main.storyboard */,
+				6E659F8B1EF552F300A2D727 /* LogIn.storyboard */,
+				6E659F851EF5523B00A2D727 /* Initial.storyboard */,
+				6E659F881EF5524B00A2D727 /* Posting.storyboard */,
 				6E862EF31E2B56BE00D1067D /* LaunchScreen.storyboard */,
 			);
 			name = Asset;
@@ -426,7 +438,10 @@
 			files = (
 				6E862EF51E2B56BE00D1067D /* LaunchScreen.storyboard in Resources */,
 				6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */,
+				6E659F8D1EF552F300A2D727 /* LogIn.storyboard in Resources */,
+				6E659F8A1EF5524B00A2D727 /* Posting.storyboard in Resources */,
 				6E862EED1E2B56BE00D1067D /* Main.storyboard in Resources */,
+				6E659F871EF5523B00A2D727 /* Initial.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +617,7 @@
 				6E862EEA1E2B56BE00D1067D /* LogInViewController.swift in Sources */,
 				6E6424411EF27A0600ED473B /* MainViewController.swift in Sources */,
 				6E64243F1EF245D200ED473B /* Location.swift in Sources */,
+				6EFE792B1EF54BE600DC67E3 /* InitialViewController.swift in Sources */,
 				6E862F191E2B60E300D1067D /* TableViewController.swift in Sources */,
 				6E862EF01E2B56BE00D1067D /* On_The_Map.xcdatamodeld in Sources */,
 				6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */,
@@ -645,6 +661,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6E659F851EF5523B00A2D727 /* Initial.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E659F861EF5523B00A2D727 /* Base */,
+			);
+			name = Initial.storyboard;
+			sourceTree = "<group>";
+		};
+		6E659F881EF5524B00A2D727 /* Posting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E659F891EF5524B00A2D727 /* Base */,
+			);
+			name = Posting.storyboard;
+			sourceTree = "<group>";
+		};
+		6E659F8B1EF552F300A2D727 /* LogIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E659F8C1EF552F300A2D727 /* Base */,
+			);
+			name = LogIn.storyboard;
+			sourceTree = "<group>";
+		};
 		6E862EEB1E2B56BE00D1067D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

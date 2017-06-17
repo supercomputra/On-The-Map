@@ -35,11 +35,6 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as? String {
-            print("logging in with \(uniqueKey)")
-            completeLogin(withLogin: false)
-        }
-        
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         setUIEnabled(true)
@@ -105,13 +100,12 @@ class LogInViewController: UIViewController {
     // Presenting next view
     func presentNextView(animate: Bool) -> Void {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let homeTabBarController = storyBoard.instantiateViewController(withIdentifier: "HomeTabBarViewController") as! UITabBarController
+        let mainTabBarController = storyBoard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
         if animate {
-            self.present(homeTabBarController, animated: true, completion: nil)
+            self.present(mainTabBarController, animated: true, completion: nil)
         } else {
-            self.present(homeTabBarController, animated: false, completion: nil)
+            self.present(mainTabBarController, animated: false, completion: nil)
         }
-        
     }
     
     // Presenting UI alert view
