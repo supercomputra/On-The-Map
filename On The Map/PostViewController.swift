@@ -25,6 +25,7 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         
         mediaURLTextField.delegate = self
+        locationTextField.delegate = self
         
         findLocationButton.layer.cornerRadius = 5.0
         findLocationButton.clipsToBounds = true
@@ -128,13 +129,4 @@ class PostViewController: UIViewController {
 
 }
 
-extension PostViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == mediaURLTextField {
-            if !(textField.text?.contains("http://"))! && !(textField.text?.contains("https://"))! {
-                textField.text = "http://"
-            }
-        }
-    }
-}
 

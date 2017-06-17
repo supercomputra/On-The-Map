@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
+//import FBSDKCoreKit
+//import FBSDKLoginKit
 
 class LogInViewController: UIViewController {
     
     // Outlets
     
-    @IBOutlet weak var usernameTexField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var thirdQuarterView: UIView!
-    @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
+//    @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
     
     // Variables
     
@@ -28,7 +28,7 @@ class LogInViewController: UIViewController {
     let backgroundView = UIView()
     
     var appDelegate: AppDelegate!
-    var username: String?
+    var email: String?
     var password: String?
     var validAccount: Bool = false
     
@@ -41,31 +41,49 @@ class LogInViewController: UIViewController {
         
         signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
 
 
     }
 
     @objc private func logIn() {
-        if usernameTexField.text!.isEmpty || passwordTextField.text!.isEmpty {
+        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             presentErrorAlertController("", alertMessage: "Username and Password you entered are wrong")
         } else {
-            // TODO: TextField checker before login
             
-            username = usernameTexField.text!
+            email = emailTextField.text!
             password = passwordTextField.text!
+            
+            
+            
             
             self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
             
-            Udacity.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?) in
+            Udacity.postSession(username: email!, password: password!) { (error: RequestError?, errorDescription: String?) in
                 if error == nil {
+                    performUIUpdatesOnMain {
+                        self.emailTextField.text = ""
+                        self.passwordTextField.text = ""
+                    }
                     self.completeLogin(withLogin: true)
                 } else {
                     if errorDescription == nil {
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        self.displayError("Error \(error.debugDescription) occurs")
+                        performUIUpdatesOnMain {
+                            self.emailTextField.text = ""
+                            self.passwordTextField.text = ""
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                            self.displayError("Error \(error.debugDescription) occurs")
+                        }
+                        
                     } else {
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        self.displayError(errorDescription!)
+                        performUIUpdatesOnMain {
+                            self.emailTextField.text = ""
+                            self.passwordTextField.text = ""
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                            self.displayError(errorDescription!)
+                        }
                     }
                 }
             }
@@ -114,7 +132,8 @@ class LogInViewController: UIViewController {
 }
 
 // Facebook
-
+// TODO: FACEBOOK LOGIN
+/*
 extension LogInViewController: FBSDKLoginButtonDelegate {
     
     // LOGIN AND LOGOUT SETUP FOR FACEBOOK
@@ -134,3 +153,4 @@ extension LogInViewController: FBSDKLoginButtonDelegate {
 
     
 }
+*/
