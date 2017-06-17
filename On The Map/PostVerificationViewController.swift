@@ -70,9 +70,9 @@ class PostVerificationViewController: UIViewController {
             
             if let placemark = PostVerificationViewController.placemark {
                 let city = placemark.locality!
-                let state = placemark.administrativeArea!
+                let state = placemark.administrativeArea ?? placemark.isoCountryCode
                 
-                studentToPut.location!.mapString = "\(city) , \(state)"
+                studentToPut.location!.mapString = "\(city) , \(state!)"
                 
                 let location = placemark.location!
                 let coordinate = location.coordinate

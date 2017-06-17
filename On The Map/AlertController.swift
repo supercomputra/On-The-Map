@@ -1,5 +1,5 @@
 //
-//  AlertViewController.swift
+//  AlertController.swift
 //  On The Map
 //
 //  Created by Zulwiyoza Putra on 6/17/17.

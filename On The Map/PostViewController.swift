@@ -129,4 +129,13 @@ class PostViewController: UIViewController {
 
 }
 
+extension PostViewController {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == mediaURLTextField {
+            if !(textField.text?.contains("http://"))! && !(textField.text?.contains("https://"))! {
+                textField.text = "http://"
+            }
+        }
+    }
+}
 

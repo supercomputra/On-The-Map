@@ -64,15 +64,17 @@ class MainViewController: UIViewController {
     }
     
     func logOut() {
-        self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
-        Udacity.deleteSession {
-            UserDefaults.standard.removeObject(forKey: "uniqueKey")
-            UserDefaults.standard.synchronize()
-            performUIUpdatesOnMain {
-                self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                self.dismiss(animated: true, completion: nil)
+        logOutDialogueBox {
+            self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
+            Udacity.deleteSession {
+                UserDefaults.standard.removeObject(forKey: "uniqueKey")
+                UserDefaults.standard.synchronize()
+                performUIUpdatesOnMain {
+                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
             }
-            
         }
     }
     
@@ -120,6 +122,19 @@ class MainViewController: UIViewController {
     
     
     
+}
 
+extension MainViewController {
+    func logOutDialogueBox(completion: (@escaping () -> Void)) {
+        let alert = UIAlertController(title: "Log Out", message: "Are You Sure Want To Log Out?", preferredStyle: UIAlertControllerStyle.alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (action: UIAlertAction) in
+            completion()
+        }
+        alert.addAction(logOut)
+        alert.addAction(cancel )
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }
