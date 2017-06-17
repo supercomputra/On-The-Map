@@ -62,7 +62,7 @@ class PostVerificationViewController: PostingViewController {
                 Parse.putStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
                         print("success put student information")
-                        
+                        self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         print(error.debugDescription)
                     }
