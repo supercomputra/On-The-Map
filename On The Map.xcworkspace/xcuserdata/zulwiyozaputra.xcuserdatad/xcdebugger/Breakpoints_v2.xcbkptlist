@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "On The Map/Parse.swift"
-            timestampString = "519303622.460641"
+            filePath = "On The Map/ParseConvenience.swift"
+            timestampString = "519357033.151409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "taskForGETMethod(parameters:queryDictionary:completionHandlerForGET:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getStudentLocation(uniqueKey:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "On The Map/ParseConvenience.swift"
+            timestampString = "519357034.452034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "getStudentLocation(uniqueKey:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

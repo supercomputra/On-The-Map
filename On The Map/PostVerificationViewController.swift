@@ -31,6 +31,7 @@ class PostVerificationViewController: PostingViewController {
     func finish() {
         print("finish button is tapped")
         let uniqueKey = UserDefaults.standard.value(forKey: "uniqueKey") as! String
+
         Parse.getStudentLocation(uniqueKey: uniqueKey) { (student: Student?, error: NSError?) in
             guard error == nil else{
                 print(error.debugDescription)
