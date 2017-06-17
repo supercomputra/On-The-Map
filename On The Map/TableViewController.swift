@@ -41,7 +41,12 @@ class TableViewController: MainViewController {
     
     override func refresh() {
         super.refresh()
-        tableView.reloadData()
+        DataSource.getStudents {
+            performUIUpdatesOnMain {
+                self.tableView.reloadData()
+            }
+        }
+        
     }
     
     

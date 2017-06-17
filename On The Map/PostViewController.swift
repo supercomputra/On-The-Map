@@ -26,6 +26,9 @@ class PostViewController: UIViewController {
         
         mediaURLTextField.delegate = self
         
+        findLocationButton.layer.cornerRadius = 5.0
+        findLocationButton.clipsToBounds = true
+        
         let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
         backBarButtonItem.tintColor = Udacity.Color.blue
         self.navigationItem.setLeftBarButton(backBarButtonItem, animated: false)

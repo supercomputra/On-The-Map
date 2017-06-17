@@ -1,5 +1,5 @@
 //
-//  LoadingViewManager.swift
+//  ActivityIndicatorController.swift
 //  On The Map
 //
 //  Created by Zulwiyoza Putra on 6/17/17.
@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
     func activityIndicator(activityIndicator: UIActivityIndicatorView, animate: Bool, on view: UIView) {
         if animate {
             let centerX = self.view.bounds.size.width/2

@@ -26,6 +26,9 @@ class PostVerificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        finishButton.layer.cornerRadius = 5.0
+        finishButton.clipsToBounds = true
+        
         let backBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_back-arrow"), style: .plain, target: self, action: #selector(back))
         backBarButtonItem.tintColor = Udacity.Color.blue
         self.navigationItem.setLeftBarButton(backBarButtonItem, animated: false)
@@ -80,12 +83,14 @@ class PostVerificationViewController: UIViewController {
             if error == nil {
                 Parse.putStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
-                        print("success put student information")
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        self.navigationController?.popToRootViewController(animated: true)
+                        performUIUpdatesOnMain {
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
                     } else {
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        print(error.debugDescription)
+                        performUIUpdatesOnMain {
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        }
                     }
                 })
                 
@@ -93,12 +98,15 @@ class PostVerificationViewController: UIViewController {
                 
                 Parse.postStudentLocation(student: studentToPut, completion: { (error: NSError?) in
                     if error == nil {
-                        print("success put student information")
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        self.navigationController?.popToRootViewController(animated: true)
+                        performUIUpdatesOnMain {
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                        
                     } else {
-                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                        print(error.debugDescription)
+                        performUIUpdatesOnMain {
+                            self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        }
                     }
                 })
                 

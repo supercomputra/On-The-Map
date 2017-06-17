@@ -36,53 +36,48 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         appDelegate = UIApplication.shared.delegate as! AppDelegate
+        logInButton.layer.cornerRadius = 5.0
+        logInButton.clipsToBounds = true
         
-        setUIEnabled(true)
-        
-        /*
-        
-        facebookLoginButton = FBSDKLoginButton()
-        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        facebookLoginButton.delegate = self
-        if (FBSDKAccessToken.current() != nil) {
-         // User is logged in, do work such as go to next view controller.
-        }
-        */
-    }
-    
-    // Actions
+        signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
 
-    @IBAction func logInButton(_ sender: Any) {
-        
-        self.state(state: .loading, activityIndicator: activityIndicator, background: backgroundView)
-        
+
+    }
+
+    @objc private func logIn() {
         if usernameTexField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            showAlert(alertTitle: "", alertMessage: "Username and Password you entered are wrong")
-        }
-        
-        // TODO: TextField checker before login
-        
-        username = usernameTexField.text!
-        password = passwordTextField.text!
-        
-        self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
-        
-        Udacity.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?) in
-            if error == nil {
-                self.completeLogin(withLogin: true)
-            } else {
-                if errorDescription == nil {
-                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                    self.displayError("Error \(error.debugDescription) occurs")
+            presentErrorAlertController("", alertMessage: "Username and Password you entered are wrong")
+        } else {
+            // TODO: TextField checker before login
+            
+            username = usernameTexField.text!
+            password = passwordTextField.text!
+            
+            self.state(state: .loading, activityIndicator: self.activityIndicator, background: self.backgroundView)
+            
+            Udacity.postSession(username: username!, password: password!) { (error: RequestError?, errorDescription: String?) in
+                if error == nil {
+                    self.completeLogin(withLogin: true)
                 } else {
-                    self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
-                    self.displayError(errorDescription!)
+                    if errorDescription == nil {
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        self.displayError("Error \(error.debugDescription) occurs")
+                    } else {
+                        self.state(state: .normal, activityIndicator: self.activityIndicator, background: self.backgroundView)
+                        self.displayError(errorDescription!)
+                    }
                 }
             }
         }
+        
+        
     }
     
-    // Get student data
+    @objc private func signUp() {
+        let url = "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated"
+        self.presentURLInSafariViewController(stringURL: url)
+    }
     
     // Complete Login
     private func completeLogin(withLogin: Bool) -> Void {
@@ -107,20 +102,11 @@ class LogInViewController: UIViewController {
             self.present(mainTabBarController, animated: false, completion: nil)
         }
     }
-    
-    // Presenting UI alert view
-    private func showAlert(alertTitle: String, alertMessage: String) -> Void {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-        let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
-        alert.addAction(destructive)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
+
     // Displaying error message
     func displayError(_ error: String) {
         performUIUpdatesOnMain {
-            self.showAlert(alertTitle: "Error", alertMessage: error)
+            self.presentErrorAlertController("Error", alertMessage: error)
         }
     }
     
@@ -147,48 +133,4 @@ extension LogInViewController: FBSDKLoginButtonDelegate {
     }
 
     
-}
-
-private extension LogInViewController {
-    
-    func setUIEnabled(_ enabled: Bool) -> Void {
-        usernameTexField.isEnabled = enabled
-        passwordTextField.isEnabled = enabled
-        logInButton.isEnabled = enabled
-        signUpButton.isEnabled = enabled
-        
-        // Muting login button color
-        
-        if enabled {
-            logInButton.alpha = 1.0
-        } else {
-            logInButton.alpha = 0.5
-        }
-        
-    }
-    
-}
-
-extension UIViewController {
-    func presentErrorAlertController(_ alertTitle: String?, alertMessage: String?) {
-        performUIUpdatesOnMain {
-            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-            let destructive = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.destructive, handler: nil)
-            alert.addAction(destructive)
-            
-            guard alertTitle != nil else {
-                if alertMessage != nil {
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                } else {
-                    alert.title = "Error"
-                    alert.message = "Something Went Wrong"
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                }
-            }
-            
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
 }

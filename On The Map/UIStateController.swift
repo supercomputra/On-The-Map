@@ -1,5 +1,5 @@
 //
-//  ConfigureUI.swift
+//  UIStateController.swift
 //  On The Map
 //
 //  Created by Zulwiyoza Putra on 1/15/17.

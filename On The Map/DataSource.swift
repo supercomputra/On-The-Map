@@ -24,13 +24,13 @@ class DataSource: NSObject {
         }
     }
     
-    static func getStudents() {
+    static func getStudents(completion: @escaping () -> Void) {
         Parse.getStudentsLocation { (students: [Student]?, error: NSError?) in
             guard students != nil else {
                 return
             }
-            
             DataSource.students = students!
+            completion()
         }
     }
 }

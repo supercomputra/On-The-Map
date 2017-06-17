@@ -33,7 +33,11 @@ class MapViewController: MainViewController {
     
     override func refresh() {
         super.refresh()
-        mapView.reloadInputViews()
+        DataSource.getStudents {
+            performUIUpdatesOnMain {
+                self.mapView.reloadInputViews()
+            }
+        }
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E325CF31EF5670E00AF3502 /* SafariServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF21EF5670E00AF3502 /* SafariServices.swift */; };
+		6E325CF51EF56A6C00AF3502 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E325CF41EF56A6C00AF3502 /* AlertViewController.swift */; };
 		6E57A33F1E2BFCB600CA828E /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */; };
 		6E64243D1EF245C500ED473B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64243C1EF245C500ED473B /* Student.swift */; };
 		6E64243F1EF245D200ED473B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E64243E1EF245D200ED473B /* Location.swift */; };
@@ -31,7 +33,7 @@
 		6E862F0B1E2B56BF00D1067D /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F0A1E2B56BF00D1067D /* On_The_MapUITests.swift */; };
 		6E862F191E2B60E300D1067D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F181E2B60E300D1067D /* TableViewController.swift */; };
 		6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1A1E2B613500D1067D /* MapViewController.swift */; };
-		6E862F1F1E2B68B700D1067D /* UIStateControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1E1E2B68B700D1067D /* UIStateControl.swift */; };
+		6E862F1F1E2B68B700D1067D /* UIStateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E862F1E1E2B68B700D1067D /* UIStateController.swift */; };
 		6EA3DBB21E54881B005FD5BF /* Udacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DBB11E54881B005FD5BF /* Udacity.swift */; };
 		6EA3DBB41E548938005FD5BF /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA3DBB31E548938005FD5BF /* UdacityConstants.swift */; };
 		6ED70F431E2CB913001E8620 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F3F1E2CB913001E8620 /* Bolts.framework */; };
@@ -39,7 +41,7 @@
 		6ED70F451E2CB913001E8620 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */; };
 		6ED70F461E2CB913001E8620 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */; };
 		6EEFF2021EF4EF8200A00CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */; };
-		6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */; };
+		6EFE79291EF5247500DC67E3 /* ActivityIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE79281EF5247500DC67E3 /* ActivityIndicatorController.swift */; };
 		6EFE792B1EF54BE600DC67E3 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE792A1EF54BE600DC67E3 /* InitialViewController.swift */; };
 		928DBCCEE3274DB60AD7B0B8 /* Pods_On_The_MapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82E28E1D0D538C61B34047F /* Pods_On_The_MapTests.framework */; };
 		C8694540A53D3C1F44898E23 /* Pods_On_The_MapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */; };
@@ -67,6 +69,8 @@
 		2F2AAE8F84F9A2989FFF2821 /* Pods-On The MapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.release.xcconfig"; sourceTree = "<group>"; };
 		3967EB889E96FE3B705E4B8D /* Pods_On_The_MapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_On_The_MapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9F13A73929E8F691D5F4A /* Pods-On The MapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapUITests/Pods-On The MapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E325CF21EF5670E00AF3502 /* SafariServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariServices.swift; sourceTree = "<group>"; };
+		6E325CF41EF56A6C00AF3502 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		6E57A33E1E2BFCB600CA828E /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		6E64243C1EF245C500ED473B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Student.swift; path = "On The Map/Student.swift"; sourceTree = "<group>"; };
 		6E64243E1EF245D200ED473B /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = "On The Map/Location.swift"; sourceTree = "<group>"; };
@@ -97,7 +101,7 @@
 		6E862F0C1E2B56BF00D1067D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E862F181E2B60E300D1067D /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		6E862F1A1E2B613500D1067D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		6E862F1E1E2B68B700D1067D /* UIStateControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStateControl.swift; sourceTree = "<group>"; };
+		6E862F1E1E2B68B700D1067D /* UIStateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStateController.swift; sourceTree = "<group>"; };
 		6EA3DBB11E54881B005FD5BF /* Udacity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Udacity.swift; path = "On The Map/Udacity.swift"; sourceTree = "<group>"; };
 		6EA3DBB31E548938005FD5BF /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UdacityConstants.swift; path = "On The Map/UdacityConstants.swift"; sourceTree = "<group>"; };
 		6ED70F3F1E2CB913001E8620 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/Bolts.framework"; sourceTree = "<group>"; };
@@ -105,7 +109,7 @@
 		6ED70F411E2CB913001E8620 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		6ED70F421E2CB913001E8620 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../Documents/FacebookSDKs-iOS-4.18.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		6EEFF2011EF4EF8200A00CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewManager.swift; sourceTree = "<group>"; };
+		6EFE79281EF5247500DC67E3 /* ActivityIndicatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorController.swift; sourceTree = "<group>"; };
 		6EFE792A1EF54BE600DC67E3 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		852CCE917ADE5F075E2BF053 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CCDDD553B1BF25C4AFF58 /* Pods-On The MapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The MapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The MapTests/Pods-On The MapTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -204,8 +208,10 @@
 		6E72326F1E54936100D754AB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6E862F1E1E2B68B700D1067D /* UIStateControl.swift */,
-				6EFE79281EF5247500DC67E3 /* LoadingViewManager.swift */,
+				6E325CF21EF5670E00AF3502 /* SafariServices.swift */,
+				6E862F1E1E2B68B700D1067D /* UIStateController.swift */,
+				6EFE79281EF5247500DC67E3 /* ActivityIndicatorController.swift */,
+				6E325CF41EF56A6C00AF3502 /* AlertViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -610,7 +616,7 @@
 				6EA3DBB41E548938005FD5BF /* UdacityConstants.swift in Sources */,
 				6E862F1B1E2B613500D1067D /* MapViewController.swift in Sources */,
 				6E7232721E5499B400D754AB /* UdacityConvenience.swift in Sources */,
-				6E862F1F1E2B68B700D1067D /* UIStateControl.swift in Sources */,
+				6E862F1F1E2B68B700D1067D /* UIStateController.swift in Sources */,
 				6E64243D1EF245C500ED473B /* Student.swift in Sources */,
 				6E7ABC6E1EF3AE3300CE1651 /* PostViewController.swift in Sources */,
 				6E7ABC721EF3B6C400CE1651 /* PostVerificationViewController.swift in Sources */,
@@ -618,10 +624,12 @@
 				6E6424411EF27A0600ED473B /* MainViewController.swift in Sources */,
 				6E64243F1EF245D200ED473B /* Location.swift in Sources */,
 				6EFE792B1EF54BE600DC67E3 /* InitialViewController.swift in Sources */,
+				6E325CF31EF5670E00AF3502 /* SafariServices.swift in Sources */,
 				6E862F191E2B60E300D1067D /* TableViewController.swift in Sources */,
 				6E862EF01E2B56BE00D1067D /* On_The_Map.xcdatamodeld in Sources */,
-				6EFE79291EF5247500DC67E3 /* LoadingViewManager.swift in Sources */,
+				6EFE79291EF5247500DC67E3 /* ActivityIndicatorController.swift in Sources */,
 				6E657D2D1E55960B000CA82E /* ParseConvenience.swift in Sources */,
+				6E325CF51EF56A6C00AF3502 /* AlertViewController.swift in Sources */,
 				6E862EE81E2B56BE00D1067D /* AppDelegate.swift in Sources */,
 				6EA3DBB21E54881B005FD5BF /* Udacity.swift in Sources */,
 				6E7232751E54AD9200D754AB /* Parse.swift in Sources */,

@@ -81,8 +81,6 @@ class MainViewController: UIViewController {
     }
     
     func refresh() {
-        print("Refresh button tapped")
-        DataSource.getStudents()
     }
     
     func getAnnotations(_ completion: @escaping (_ completion: [MKPointAnnotation])-> Void) {
@@ -121,24 +119,7 @@ class MainViewController: UIViewController {
     }
     
     
-    func presentURLInSafariViewController(stringURL: String) {
-        
-        guard let url = URL(string: stringURL) else {
-            return
-        }
-        
-        if url.scheme != nil {
-            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
-            self.present(safariViewController, animated: true, completion: nil)
-        } else {
-            if let schemedURL = URL(string: "http://" + stringURL) {
-                let safariViewController = SFSafariViewController(url: schemedURL, entersReaderIfAvailable: true)
-                self.present(safariViewController, animated: true, completion: nil)
-            } else {
-                presentErrorAlertController("Sorry", alertMessage: "The page you try to visit has no valid URL")
-            }
-        }
-    }
+    
 
     
 }
