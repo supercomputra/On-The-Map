@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8gp-So-AQN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,8 +13,7 @@
         <!--Log In View Controller-->
         <scene sceneID="14v-Y5-DHK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gok-nb-rJc" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="LoginViewController" id="8gp-So-AQN" customClass="LogInViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="8gp-So-AQN" customClass="LogInViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lk6-Cg-hAN"/>
                         <viewControllerLayoutGuide type="bottom" id="5g0-bp-QiC"/>
@@ -155,6 +154,7 @@
                         <outlet property="usernameTexField" destination="PiA-cA-VOl" id="0Is-aD-oZs"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gok-nb-rJc" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2082" y="1784"/>
         </scene>

@@ -34,8 +34,8 @@ class InitialViewController: UIViewController {
     
     // Presenting Login view
     func presentLoginView(animate: Bool) -> Void {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let logInViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LogInViewController
+        let storyBoard = UIStoryboard(name: "LogIn", bundle: nil)
+        let logInViewController = storyBoard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
         if animate {
             self.present(logInViewController, animated: true, completion: nil)
         } else {
