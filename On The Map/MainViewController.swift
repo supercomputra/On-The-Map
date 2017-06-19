@@ -132,6 +132,8 @@ class MainViewController: UIViewController {
     
 }
 
+// Log Out Dialogue Box
+
 extension MainViewController {
     func logOutDialogueBox(completion: (@escaping () -> Void)) {
         let alert = UIAlertController(title: "Log Out", message: "Are You Sure Want To Log Out?", preferredStyle: UIAlertControllerStyle.alert)
